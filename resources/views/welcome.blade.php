@@ -7,48 +7,21 @@
     <title>CARS - Find Your Dream Car</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Custom Styles */
-        /* Add any custom styles here */
-        .video-docker video {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .video-docker::after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-        }
-    </style>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-
-    {{--  <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ URL::asset('css/font-awesome.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ URL::asset('css/elegant-icons.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ URL::asset('css/nice-select.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ URL::asset('css/magnific-popup.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ URL::asset('css/jquery-ui.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ URL::asset('css/owl.carousel.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ URL::asset('css/slicknav.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" type="text/css">  --}}
+    <style>
+        /* Custom Styles */
+        /* Add any custom styles here */
+    </style>
 </head>
 
 <body class="bg-gray-100 font-sans">
 
     <!-- Navigation -->
 
-    <nav class="bg-white dark:bg-white-700 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-200">
+    <nav
+        class="bg-white dark:bg-white-700 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-200">
         <nav class="bg-gray-600 border-gray-200 dark:bg-gray-800">
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <div class="flex items-center space-x-6 rtl:space-x-reverse">
@@ -142,7 +115,8 @@
                 <ul
                     class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
                     <li>
-                        <a href="{{ route('home') }}" class="block py-2 px-3 md:p-0 text-gray-700 rounded hover:bg-gray-100 "
+                        <a href="{{ route('home') }}"
+                            class="block py-2 px-3 md:p-0 text-gray-700 rounded hover:bg-gray-100 "
                             aria-current="page">Home</a>
                     </li>
                     <li>
@@ -171,15 +145,18 @@
         </div>
     </nav>
 
-    <section class="relative h-screen flex flex-row items-center justify-center text-center text-white rounded-lg">
-        <div class="video-docker absolute top-0 left-0 w-full h-full overflow-hidden z-0 ">
+    <section
+        class="relative h-screen flex flex-row items-center justify-center text-center text-white rounded-lg bg-gray-100">
+        <div class="video-docker absolute top-0 left-0 w-full h-full overflow-hidden z-0">
             <video
                 class="min-w-full min-h-full absolute object-cover top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                 src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
-                type="video/mp4" autoplay muted loop></video>
+                type="video/mp4" autoplay muted loop>
+            </video>
             <div class="absolute top-0 left-0 w-full h-full bg-black opacity-60"></div>
         </div>
-        <div class="z-10 relative flex flex-row items-center justify-content-around gap-24">
+
+        <div class="z-10 relative flex flex-row items-center justify-content-around gap-24 bg-gray-25">
             <div class="flex flex-col gap-10">
                 <span class=""> FIND YOUR DREAM CAR </span>
                 <h1 class="font-light text-6xl font-bold text-red">Porsche Cayenne S </h1>
@@ -457,7 +434,8 @@
     {{--  =====================  services ========= --}}
 
 
-    <section id="features" class="relative block px-6 py-10 pt-5 md:py-20 md:px-10 border-t border-b border-neutral-200">
+    <section id="features"
+        class="relative block px-6 py-10 pt-5 md:py-20 md:px-10 border-t border-b border-neutral-200">
 
         <div class="relative mx-auto max-w-5xl text-center">
             <span class="text-red-400 my-3 flex items-center justify-center font-medium uppercase tracking-wider">
@@ -473,8 +451,10 @@
         </div>
 
         <div class="relative mx-auto max-w-5xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="rounded-md border border-neutral-300 bg-gray-200 p-8 text-center shadow-md transform transition-transform hover:-translate-y-2 hover:bg-white hover:text-gray-900">
-                <div class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
+            <div
+                class="rounded-md border border-neutral-300 bg-gray-200 p-8 text-center shadow-md transform transition-transform hover:-translate-y-2 hover:bg-white hover:text-gray-900">
+                <div
+                    class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
                     <img src="img/services/services-1.png" alt>
                 </div>
                 <h5 class="font-bold">Rental A Cars</h5>
@@ -484,8 +464,10 @@
                 <a href="#"><i class="fa fa-long-arrow-right"></i></a>
             </div>
 
-            <div class="rounded-md border border-neutral-300 bg-gray-200 p-8 text-center shadow-md transform transition-transform hover:-translate-y-2 hover:bg-white hover:text-gray-900">
-                <div class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
+            <div
+                class="rounded-md border border-neutral-300 bg-gray-200 p-8 text-center shadow-md transform transition-transform hover:-translate-y-2 hover:bg-white hover:text-gray-900">
+                <div
+                    class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
                     <img src="img/services/services-3.png" alt>
                 </div>
                 <h5 class="font-bold">Car Maintenance</h5>
@@ -495,8 +477,10 @@
                 <a href="#"><i class="fa fa-long-arrow-right"></i></a>
             </div>
 
-            <div class="rounded-md border border-neutral-300 bg-gray-200 p-8 text-center shadow-md transform transition-transform hover:-translate-y-2 hover:bg-white hover:text-gray-900">
-                <div class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
+            <div
+                class="rounded-md border border-neutral-300 bg-gray-200 p-8 text-center shadow-md transform transition-transform hover:-translate-y-2 hover:bg-white hover:text-gray-900">
+                <div
+                    class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
                     <img src="img/services/services-2.png" alt>
                 </div>
                 <h5 class="font-bold">Buying A Cars</h5>
@@ -536,15 +520,19 @@
                 </p>
             </div>
             <div class="feature__text__btn mt-4">
-                <a href="#" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
+                <a href="#"
+                    class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
                 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4
                 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800
-                dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">About Us</a>
+                dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">About
+                    Us</a>
 
-                <a href="#" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
+                <a href="#"
+                    class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
                 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4
                 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800
-                dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Our Partners</a>
+                dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Our
+                    Partners</a>
             </div>
         </div>
 
@@ -557,25 +545,29 @@
         <div class="flex flex-col md:w-1/3 md:flex-row gap-20">
             <div class="flex flex-col gap-6">
                 <div class="feature__item mb-4">
-                    <div class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
+                    <div
+                        class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
                         <img src="{{ URL::asset('img/feature/feature-1.png') }}" alt="Engine Icon">
                     </div>
                     <h6 class="text-gray-700">Engine</h6>
                 </div>
                 <div class="feature__item mb-4">
-                    <div class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
+                    <div
+                        class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
                         <img src="{{ URL::asset('img/feature/feature-2.png') }}" alt="Turbo Icon">
                     </div>
                     <h6 class="text-gray-700">Turbo</h6>
                 </div>
                 <div class="feature__item mb-4">
-                    <div class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
+                    <div
+                        class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
                         <img src="{{ URL::asset('img/feature/feature-3.png') }}" alt="Cooling Icon">
                     </div>
                     <h6 class="text-gray-700">Cooling</h6>
                 </div>
                 <div class="feature__item mb-4">
-                    <div class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
+                    <div
+                        class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
                         <img src="{{ URL::asset('img/feature/feature-4.png') }}" alt="Suspension Icon">
                     </div>
                     <h6 class="text-gray-700">Suspension</h6>
@@ -584,19 +576,22 @@
 
             <div class="flex flex-col gap-6">
                 <div class="feature__item mb-4">
-                    <div class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
+                    <div
+                        class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
                         <img src="{{ URL::asset('img/feature/feature-5.png') }}" alt="Electrical Icon">
                     </div>
                     <h6 class="text-gray-700">Electrical</h6>
                 </div>
                 <div class="feature__item mb-4 flex flex-col justify-center">
-                    <div class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
+                    <div
+                        class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
                         <img src="{{ URL::asset('img/feature/feature-6.png') }}" alt="Brakes Icon">
                     </div>
                     <h6 class="text-gray-700">Brakes</h6>
                 </div>
                 <div class="feature__item mb-4">
-                    <div class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
+                    <div
+                        class="button-text mx-auto flex h-20 w-20 rounded rounded-full items-center justify-center border bg-gray-100">
                         <img src="{{ URL::asset('img/feature/feature-6.png') }}" alt="Brakes Icon">
                     </div>
                     <h6 class="text-gray-700">Brakes</h6>
@@ -604,90 +599,126 @@
             </div>
         </div>
     </section>
-{{--  ======================================= cars ===========  --}}
+    {{--  ======================================= cars ===========  --}}
 
-<section class="car spad bg-gray-100 py-8 pt-20">
-    <div class="container mx-auto">
-        <div class="text-center">
-            <div class="section-title">
-                <span class="text-red-500 font-semibold">Best Vehicle Offers</span>
-                <h2 class="text-3xl font-bold text-gray-800">Best Vehicle Offers</h2>
+    <section class="car spad bg-gray-100 py-8 pt-20 flex flex-col justify-center">
+        <div class="container mx-auto flex flex-col justify-center">
+            <div class="text-center">
+                <div class="section-title">
+                    <span class="text-red-500 font-semibold">Best Vehicle Offers</span>
+                    <h2 class="text-3xl font-bold text-gray-800">Best Vehicle Offers</h2>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center sm:justify-start md:justify-between lg:justify-around gap-6 pt-10">
+                <div class="w-full sm:w-auto md:w-auto lg:w-auto">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+
+                            <div class="relative">
+
+                                <div class="car__item__pic__slider owl-carousel">
+                                    <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">
+                                </div>
+
+                                <span
+                                    class="car-option sale absolute top-0 right-0 bg-red-500 text-white py-1 px-2 rounded-bl-lg">
+                                    For Sale
+                                </span>
+
+                            </div>
+
+                            <div class="p-4">
+                                <div
+                                    class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">
+                                    2017
+                                </div>
+                                <h5 class="text-xl font-semibold mt-2"><a href="#"
+                                        class="text-gray-800 hover:text-red-500">Porsche Cayenne Turbo
+                                        S</a></h5>
+                                <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
+                                    <li><span>35,000</span> mi | </li>
+                                    <li>Auto | </li>
+                                    <li><span>700</span> hp |</li>
+                                </ul>
+                            </div>
+
+                            <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
+                                <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">
+                                    available
+                                </h6>
+                                <h6 class="text-lg font-semibold p-2">$218<span class="text-sm">/Month</span>
+                                </h6>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full sm:w-auto md:w-auto lg:w-auto">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+
+                            <div class="relative">
+
+                                <div class="car__item__pic__slider owl-carousel">
+                                    <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">
+                                </div>
+
+                                <span class="car-option sale absolute top-0 right-0 bg-blue-500 text-white py-1 px-2 rounded-bl-lg">
+                                    For Rente
+                                </span>
+                            </div>
+
+                            <div class="p-4">
+                                <div class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">
+                                    2016
+                                </div>
+                                <h5 class="text-xl font-semibold mt-2"><a href="#" class="text-gray-800 hover:text-red-500">Porsche Cayenne Turbo S</a>
+                                </h5>
+                                <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
+                                    <li><span class="text-gray-900">35,000</span> mi | </li>
+                                    <li>Auto | </li>
+                                    <li><span>700</span> hp |</li>
+                                </ul>
+                                <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
+                                    <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">available
+                                    </h6>
+                                    <h6 class="text-lg font-red-600 p-2">$218<span class="text-sm">/Month</span></h6>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pt-10">
-            <div class="col-span-1 mix">
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
-                    <div class="relative">
-                        <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">
-                        </div>
-                        <span class="car-option sale absolute top-0 right-0 bg-red-500 text-white py-1 px-2 rounded-bl-lg">For Sale</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="label-date bg-gray-100 text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">2023</div>
-                        <h5 class="text-xl font-semibold mt-2"><a href="#" class="text-gray-800 hover:text-red-500">Porsche Cayenne Turbo S</a></h5>
-                        <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
-                            <li><span>35,000</span> mi  | </li>
-                            <li>Auto | </li>
-                            <li><span>700</span> hp |</li>
-                        </ul>
-                        <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
-                            <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">available</h6>
-                            <h6 class="text-lg font- p-2">$218<span class="text-sm">/Month</span></h6>
-                        </div>
-                    </div>
+    </section>
+
+    <section>
+        <div class="items-center w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-5"
+            data-aos="fade-right" data-aos-duration="800">
+            <div class="pr-2 md:mb-14 py-14 md:py-0">
+                <h1 class="text-3xl font-semibold text-blue-900 xl:text-5xl lg:text-3xl"><span
+                        class="block w-full">Get a financial experience</span> for growing your business!</h1>
+                <p class="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
+                    Empowering you to make better financial decisions, We truly are professional money planners...
+                </p>
+                <div class="mt-4">
+                    <a href="#contact"
+                        class="px-5 py-3 text-lg tracking-wider text-white bg-blue-500 rounded-lg md:px-8 hover:bg-blue-600 group"><span>Explore
+                            More</span> </a>
                 </div>
             </div>
-            <div class="col-span-1 mix">
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
-                    <div class="relative">
-                        <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">
-                        </div>
-                        <span class="car-option sale absolute top-0 right-0 bg-red-500 text-white py-1 px-2 rounded-bl-lg">For Sale</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">2017</div>
-                        <h5 class="text-xl font-semibold mt-2"><a href="#" class="text-gray-800 hover:text-red-500">Porsche Cayenne Turbo S</a></h5>
-                        <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
-                            <li><span>35,000</span> mi  | </li>
-                            <li>Auto | </li>
-                            <li><span>700</span> hp |</li>
-                        </ul>
-                        <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
-                            <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">available</h6>
-                            <h6 class="text-lg font-semibold p-2">$218<span class="text-sm">/Month</span></h6>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
+                <img id="heroImg1"
+                    class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0"
+                    src="{{ asset('img/chooseus-video.png') }}" alt="Awesome hero page image" width="500"
+                    height="488" />
             </div>
-            <div class="col-span-1 mix">
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
-                    <div class="relative">
-                        <div class="car__item__pic__slider">
-                            <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">
-                        </div>
-                        <span class="car-option sale absolute top-0 right-0 bg-blue-500 text-white py-1 px-2 rounded-bl-lg">For Rente</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">2016</div>
-                        <h5 class="text-xl font-semibold mt-2"><a href="#" class="text-gray-800 hover:text-red-500">Porsche Cayenne Turbo S</a></h5>
-                        <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
-                            <li><span class="text-gray-900">35,000</span> mi  | </li>
-                            <li>Auto | </li>
-                            <li><span>700</span> hp |</li>
-                        </ul>
-                        <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
-                            <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">available</h6>
-                            <h6 class="text-lg font-red-600 p-2">$218<span class="text-sm">/Month</span></h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- More car items -->
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
