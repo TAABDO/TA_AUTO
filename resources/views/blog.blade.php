@@ -10,7 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HVAC | Template</title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -96,129 +98,141 @@
 
 <body>
 
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__widget">
-            <a href="#"><i class="fa fa-cart-plus"></i></a>
-            <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
-            <a href="#" class="primary-btn">Add Car</a>
-        </div>
-        <div class="offcanvas__logo">
-            <a href="index.html"><img src="img/logo.png" alt></a>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <ul class="offcanvas__widget__add">
-            <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
-            <li><i class="fa fa-envelope-o"></i> <a href="https://preview.colorlib.com/cdn-cgi/l/email-protection"
-                    class="__cf_email__"
-                    data-cfemail="85ccebe3eaabe6eae9eaf7e9ece7c5e2e8e4ece9abe6eae8">[email&#160;protected]</a></li>
-        </ul>
-        <div class="offcanvas__phone__num">
-            <i class="fa fa-phone"></i>
-            <span>(+12) 345 678 910</span>
-        </div>
-        <div class="offcanvas__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-google"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-        </div>
-    </div>
-
-
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <ul class="header__top__widget">
-                            <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
-                            <li><i class="fa fa-envelope-o"></i> <a
-                                    href="https://preview.colorlib.com/cdn-cgi/l/email-protection" class="__cf_email__"
-                                    data-cfemail="bbf2d5ddd495d8d4d7d4c9d7d2d9fbdcd6dad2d795d8d4d6">[email&#160;protected]</a>
-                            </li>
-                        </ul>
+    <nav class="bg-white dark:bg-white-700 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-200">
+        <nav class="bg-gray-600 border-gray-200 dark:bg-gray-800">
+            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+                <div class="flex items-center space-x-6 rtl:space-x-reverse">
+                    <a href="tel:5541251234" class="text-sm  text-gray-500 dark:text-white hover:underline">(555)
+                        412-1234</a>
+                    <a href="#"
+                        class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
+                    bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4
+                    focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800
+                    dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Login</a>
+                </div>
+            </div>
+        </nav>
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-gray-600">TA-AUTO</span>
+            </a>
+            @auth
+                {{-- User Authenticated --}}
+                <div class="flex items-center md:order-2 space-x-3 gap-10 md:space-x-0 rtl:space-x-reverse">
+                    <!-- Search Bar -->
+                    <div class="relative">
+                        <input type="text" placeholder="Search"
+                            class="block w-64 py-2 px-4 text-sm text-gray-700 placeholder-gray-400 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:border-gray-600">
+                        <button type="button"
+                            class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 focus:outline-none">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
                     </div>
-                    <div class="col-lg-5">
-                        <div class="header__top__right">
-                            <div class="header__top__phone">
-                                <i class="fa fa-phone"></i>
-                                <span>(+12) 345 678 910</span>
-                            </div>
-                            <div class="header__top__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-google"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </div>
+                    <!-- User Profile Dropdown -->
+                    <div class="relative">
+                        <button type="button"
+                            class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                            id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                            data-dropdown-placement="bottom">
+                            <span class="sr-only">Open user menu</span>
+                            <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg"
+                                alt="user photo">
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                            id="user-dropdown">
+                            <!-- Dropdown Content -->
                         </div>
                     </div>
+                    <!-- Mobile Menu Toggle -->
+                    <button data-collapse-toggle="navbar-user" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="navbar-user" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button>
                 </div>
+            @else
+                {{-- User Not Authenticated --}}
+                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <!-- Authentication Links -->
+                    <a href="{{ route('login') }}"><button type="button"
+                            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
+                        bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4
+                        focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800
+                        dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Login</button></a>
+                    <a href="{{ route('register') }}"> <button type="button"
+                            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
+                        bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4
+                        focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800
+                        dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Register</button></a>
+                    <!-- Mobile Menu Toggle -->
+                    <button data-collapse-toggle="navbar-sticky" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="navbar-sticky" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button>
+                </div>
+            @endauth
+
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 ml-20" id="navbar-cta">
+                <ul
+                    class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
+                    <li>
+                        <a href="{{ route('home') }}" class="block py-2 px-3 md:p-0 text-gray-700 rounded hover:bg-gray-100 "
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('car.index') }}"
+                            class="block py-2 px-3 md:p-0 text-gray-700 rounded hover:bg-gray-100 ">Cars</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('Blog.Blog') }}"
+                            class="block py-2 px-3 md:p-0 text-gray-700 rounded hover:bg-gray-100 ">blog</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('Blog.Blog') }}"
+                            class="block py-2 px-3 md:p-0 text-gray-700 rounded hover:bg-gray-100">Service
+                            Micanique</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('contact.contact') }}"
+                            class="block py-2 px-3 md:p-0 text-gray-700 rounded hover:bg-gray-100">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            {{-- Mobile Menu --}}
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <!-- Mobile Menu Content -->
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="index.html"><img src="img/logo.png" alt></a>
-                    </div>
-                </div>
-                <div class="col-lg-10">
-                    <div class="header__nav">
-                        <nav class="header__menu">
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="car.html">Cars</a></li>
-                                <li class="active"><a href="blog.html">Blog</a></li>
-                                <li><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="car-details.html">Car Details</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </nav>
-                        <div class="header__nav__widget">
-                            <div class="header__nav__widget__btn">
-                                <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
-                            </div>
-                            <a href="#" class="primary-btn">Add Car</a>
-                        </div>
-                    </div>
+    </nav>
+    <header class="header pt-[8rem]">
+        <section class="bg-cover bg-center bg-no-repeat bg-opacity-50 relative h-[40%]" style="background-image: url('{{ URL::asset('img/imagesPFR/AudiR.jpg') }}');">
+            <div class="absolute inset-0 bg-gray-900 bg-opacity-75"></div>
+            <div class="container mx-auto py-32 px-6 text-center relative">
+                <h1 class="text-4xl sm:text-5xl font-bold text-white">Blog Section</h1>
+                <div class="text-gray-300 text-xl mt-4">
+                    <a href="{{ route('car.index') }}" class="hover:text-red-500">Home</a>
+                    <span class="mx-2">&rsaquo;</span>
+                    <span class="text-red-500">Blog</span>
                 </div>
             </div>
-            <div class="canvas__open">
-                <span class="fa fa-bars"></span>
-            </div>
-        </div>
+        </section>
     </header>
-
-
-    <div class="breadcrumb-option set-bg" data-setbg="img/breadcrumb-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Latest Blogs</h2>
-                        <div class="breadcrumb__links">
-                            <a href="index.html"><i class="fa fa-home"></i> Home</a>
-                            <span>Our Blogs</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <section class="blog spad">
         <div class="container">
             <div class="row">
