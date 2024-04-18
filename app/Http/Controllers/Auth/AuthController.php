@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -24,28 +25,28 @@ class AuthController extends Controller
     // ====================== register user ========================
 
     public function regesterUser(Request $request)
-{
-    $request->validate([
-        'fullname' => 'required',
-        'email' => 'required|email|unique:users',
-        'password' => 'required',
-    ]);
+    {
+        $request->validate([
+            'fullname' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+        ]);
 
-    $user = new User();
-    $user->fullname = $request->fullname;
-    $user->email = $request->email;
-    $user->password = Hash::make($request->password);
-    $save = $user->save();
+        $user = new User();
+        $user->fullname = $request->fullname;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $save = $user->save();
 
-    if ($save) {
-        $user->roles()->attach([3]);
-        event(new Registered($user));
+        if ($save) {
+            $user->roles()->attach([3]);
+            event(new Registered($user));
 
-        return redirect()->route('login')->with('success', 'User created successfully');
-    } else {
-        return back()->with('fail', 'Something went wrong');
+            return redirect()->route('login')->with('success', 'User created successfully');
+        } else {
+            return back()->with('fail', 'Something went wrong');
+        }
     }
-}
     // =========== login user ===========
 
     public function loginUser(Request $request)
@@ -58,12 +59,13 @@ class AuthController extends Controller
         $user = User::where('email', '=', $request->email)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
+                Auth::login($user);
                 if ($user->roles()->exists() && $user->roles()->first()->name === 'Admin') {
                     return redirect()->route('Admin.index');
                 } elseif ($user->roles()->exists() && $user->roles()->first()->name === 'Client') {
                     return redirect()->route('home');
                 } elseif ($user->roles()->exists() && $user->roles()->first()->name === 'Announcer') {
-                    return redirect()->route('seller');
+                    return redirect()->route('Announcer.index');
                 } else {
                     return back()->with('fail', 'No role found for this user');
                 }
@@ -77,27 +79,10 @@ class AuthController extends Controller
 
     public function logout()
     {
-        if (session()->has('LoggedUser')) {
-            session()->pull('LoggedUser');
-            return redirect()->route('login');
-        }
+        Auth::logout();
+
+        return redirect()->route('login');
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 }
-

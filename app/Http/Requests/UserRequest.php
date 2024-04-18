@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -11,7 +12,7 @@ class UserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,16 +22,18 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userId = Auth::id();
         return [
 
-                'name' => 'sometimes|string|max:255',
-                // 'email' => 'required|string|email|max:255|unique:users,email,' . $this->user->id,
-                'password' => 'nullable|string|min:8|confirmed',
-                'address' => 'nullable|string|max:255',
-                'phone' => 'nullable|string|max:20',
-                'status' => 'sometimes|string|in:active,inactive',
-                'image'=> 'sometimes|mimes:jpg,jpeg,png,gif',
+            'fullname' => 'sometimes|string|max:255',
+            'email' => 'sometimes|string|email|max:255|unique:users,email,' . $userId,
+            'password' => 'sometimes|string|min:8|max:255',
+            'address' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
+            'status' => 'sometimes|string|in:active,inactive,pending',
+            'agence_id' => 'sometimes|integer|exists:agences,id',
+            'profile' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
 
-               ];
+        ];
     }
 }

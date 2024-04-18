@@ -43,36 +43,44 @@
             </li>
             <li class="mb-1 group">
                 <a href="{{ route('brands.index') }}"
-                    class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle" >
+                    class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                     <i class='bx bx-list-ul mr-3 text-lg'></i>
                     <span class="text-sm">Brands</span>
                     <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
                 </a>
                 <ul class="pl-7 mt-2 hidden group-[.selected]:block">
                     <li class="mb-4">
-                        <a href="" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">All</a>
+                        <a href=""
+                            class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">All</a>
                     </li>
                     <li class="mb-4">
-                        <a href="{{ route('brands.create') }}" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Create Brand</a>
+                        <a href="{{ route('brands.create') }}"
+                            class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Create
+                            Brand</a>
                     </li>
                 </ul>
             </li>
             <li class="mb-1 group">
                 <a href="{{ route('brands.index') }}"
-                    class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle" >
+                    class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                     <i class='bx bx-list-ul mr-3 text-lg'></i>
                     <span class="text-sm">Blog</span>
                     <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
                 </a>
                 <ul class="pl-7 mt-2 hidden group-[.selected]:block">
                     <li class="mb-4">
-                        <a href="" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Blogs</a>
+                        <a href=""
+                            class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Blogs</a>
                     </li>
                     <li class="mb-4">
-                        <a href="" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Create Blog</a>
+                        <a href=""
+                            class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Create
+                            Blog</a>
                     </li>
                     <li class="mb-4">
-                        <a href="" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Update Blog</a>
+                        <a href=""
+                            class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Update
+                            Blog</a>
                     </li>
                 </ul>
             </li>
@@ -80,7 +88,7 @@
             <hr>
             <li>
 
-                <a href="#"
+                <a href="{{ route('profile.index') }}"
                     class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="fa-solid fa-user"></i>
                     <span class="flex-1 ms-3 whitespace-nowrap hover:">Profile</span>
@@ -149,7 +157,8 @@
                                 class="text-gray-400 font-medium text-[13px] hover:text-gray-600 border-b-2 border-b-transparent mr-4 pb-1">Messages</button>
                         </div>
                         <div class="my-2">
-                            <ul class="max-h-64 overflow-y-auto" data-tab-for="notification" data-page="notifications">
+                            <ul class="max-h-64 overflow-y-auto" data-tab-for="notification"
+                                data-page="notifications">
                                 <li>
                                     <a href="#" class="py-2 px-4 flex items-center hover:bg-gray-50 group">
                                         <img src="https://placehold.co/32x32" alt=""
@@ -360,131 +369,159 @@
         <!-- end navbar -->
 
         <!-- Content -->
-<div class="p-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-        <!-- Statistics Cards -->
-        <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md hover:shadow-lg transition duration-300">
-            <div class="flex justify-between mb-6">
-                <div>
-                    <div class="flex items-center mb-1">
-                        <div class="text-2xl font-semibold">2</div>
+        <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                <!-- Statistics Cards -->
+                <div
+                    class="bg-white rounded-md border border-gray-100 p-6 shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex justify-between mb-6">
+                        <div>
+                            <div class="flex items-center mb-1">
+                                <div class="text-2xl font-semibold">{{ $userCounts }}</div>
+                            </div>
+                            <div class="text-sm font-medium text-gray-400">Users</div>
+                        </div>
                     </div>
-                    <div class="text-sm font-medium text-gray-400">Users</div>
+                    <a href="/gebruikers" class="text-[#f84525] font-medium text-sm hover:text-red-800">View</a>
                 </div>
-            </div>
-            <a href="/gebruikers" class="text-[#f84525] font-medium text-sm hover:text-red-800">View</a>
-        </div>
-        <!-- More statistics cards -->
+                <!-- More statistics cards -->
 
-        <!-- Users Table -->
-        <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md hover:shadow-lg transition duration-300">
-            <div class="flex justify-between mb-4">
-                <div>
-                    <div class="flex items-center mb-1">
-                        <div class="text-2xl font-semibold">100</div>
-                        <div class="p-1 rounded bg-emerald-500/10 text-emerald-500 text-[12px] font-semibold leading-none ml-2">
-                            +30%</div>
+                <!-- Users Table -->
+                <div
+                    class="bg-white rounded-md border border-gray-100 p-6 shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex justify-between mb-4">
+                        <div>
+                            <div class="flex items-center mb-1">
+                                <div class="text-2xl font-semibold">100</div>
+                                <div
+                                    class="p-1 rounded bg-emerald-500/10 text-emerald-500 text-[12px] font-semibold leading-none ml-2">
+                                    +30%</div>
+                            </div>
+                            <div class="text-sm font-medium text-gray-400">Companies</div>
+                        </div>
                     </div>
-                    <div class="text-sm font-medium text-gray-400">Companies</div>
+                    <a href="/dierenartsen" class="text-[#f84525] font-medium text-sm hover:text-red-800">View</a>
                 </div>
-            </div>
-            <a href="/dierenartsen" class="text-[#f84525] font-medium text-sm hover:text-red-800">View</a>
-        </div>
-        <!-- More statistics cards -->
+                <!-- More statistics cards -->
 
-        <!-- Blogs Card -->
-        <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md hover:shadow-lg transition duration-300">
-            <div class="flex justify-between mb-6">
-                <div>
-                    <div class="text-2xl font-semibold mb-1">100</div>
-                    <div class="text-sm font-medium text-gray-400">Blogs</div>
+                <!-- Blogs Card -->
+                <div
+                    class="bg-white rounded-md border border-gray-100 p-6 shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex justify-between mb-6">
+                        <div>
+                            <div class="text-2xl font-semibold mb-1">100</div>
+                            <div class="text-sm font-medium text-gray-400">Blogs</div>
+                        </div>
+                    </div>
+                    <a href="" class="text-[#f84525] font-medium text-sm hover:text-red-800">View</a>
                 </div>
+                <!-- More statistics cards -->
             </div>
-            <a href="" class="text-[#f84525] font-medium text-sm hover:text-red-800">View</a>
-        </div>
-        <!-- More statistics cards -->
-    </div>
-
-    <!-- Users Table -->
-    <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
-        <div class="rounded-t mb-0 px-0 border-0">
-            <div class="flex flex-wrap items-center px-4 py-2">
-                <div class="relative w-full max-w-full flex-grow flex-1">
-                    <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Users</h3>
+            <div class="flex flex-wrap justify-around gap-5">
+                <!-- Users Table -->
+                <div class="relative flex flex-col min-w-0 mb-2 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full lg:w-[60%] shadow-lg rounded">
+                    <div class="rounded-t mb-0 px-0 border-0">
+                        <div class="flex flex-wrap items-center px-4 py-2">
+                            <div class="relative w-full max-w-full flex-grow flex-1">
+                                <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Users</h3>
+                            </div>
+                        </div>
+                        <div class="block w-full overflow-x-auto">
+                            <table class="items-center w-full bg-transparent border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            class="px-4 py-3 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 text-xs uppercase font-semibold text-left">
+                                            Name</th>
+                                        <th
+                                            class="px-4 py-3 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 text-xs uppercase font-semibold text-left">
+                                            Status</th>
+                                        <th
+                                            class="px-4 py-3 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 text-xs uppercase font-semibold text-left">
+                                            Role</th>
+                                        <th
+                                            class="px-4 py-3 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 text-xs uppercase font-semibold text-left">
+                                            Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($users as $user)
+                                        <tr class="text-gray-700 dark:text-gray-100">
+                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs p-4">
+                                                {{ $user->fullname }}</td>
+                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs p-4">
+                                                {{ $user->status }}</td>
+                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs p-4">
+                                                {{ $user->roles()->first()->name }}</td>
+                                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs p-4">
+                                                <button
+                                                    class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ">
+                                                    <a href="{{ route('Admin.update', $user->id) }}">Update</a>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- brands Table -->
+                <section class="overflow-x-auto">
+                    <div class="overflow-hidden w-[100%]">
+                        <table class="min-w-full divide-y divide-gray-200 bg-white shadow-md rounded-lg w-[50%]">
+                            <thead class="mt-10 mb-10">
+                                <th class="mt-10 mb-10"> Brands Table </th>
+                            </thead>
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Name</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Logo</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                @foreach ($brands as $brand)
+                                    <tr class="hover:bg-gray-50 transition-colors duration-300 ease-in-out">
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $brand->name }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <img src="{{ $brand->getFirstMediaUrl('brands_logo') }}" alt="Brand Logo"
+                                                class="h-auto w-12">
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <button
+                                            class="border border-yellow-500 bg-yellow-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline">
+                                            <a href="{{ route('brands.edit', $brand->id) }}">Edit</a>
+                                            </button>
+                                            <button>
+                                                <form action="{{ route('brands.destroy', $brand->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                         <a class="border border-red-500 bg-red-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline">
+                                                            Delete</a>
+                                                </form>
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
             </div>
-            <div class="block w-full overflow-x-auto">
-                <table class="items-center w-full bg-transparent border-collapse">
-                    <thead>
-                        <tr>
-                            <th class="px-4 py-3 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 text-xs uppercase font-semibold text-left">
-                                Name</th>
-                            <th class="px-4 py-3 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 text-xs uppercase font-semibold text-left">
-                                Status</th>
-                            <th class="px-4 py-3 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 text-xs uppercase font-semibold text-left">
-                                Role</th>
-                            <th class="px-4 py-3 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 text-xs uppercase font-semibold text-left">
-                                Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $user)
-                        <tr class="text-gray-700 dark:text-gray-100">
-                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs p-4">
-                                {{ $user->fullname }}</td>
-                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs p-4">
-                                {{ $user->status }}</td>
-                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs p-4">
-                                {{ $user->roles()->first()->name }}</td>
-                            <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs p-4">
-                                <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ">
-                                    <a href="{{ route('Admin.update', $user->id) }}">Update</a>
-                                </button>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+
+
         </div>
-    </div>
-
-    <!-- brands Table -->
-    <section class="overflow-x-auto">
-        <div class="min-w-full overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200 bg-white shadow-md rounded-lg">
-                <thead class="bg-gray-100">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
-                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Logo</th>
-                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
-                    @foreach ($brands as $brand)
-                    <tr class="hover:bg-gray-50 transition-colors duration-300 ease-in-out">
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $brand->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <img src="{{ $brand->getFirstMediaUrl('brands_logo') }}" alt="Brand Logo" class="h-12 w-auto">
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <button class="text-blue-600 hover:text-blue-800 focus:outline-none focus:underline mr-4">
-                                <a href="{{ route('brands.edit', $brand->id) }}">Edit</a>
-                            </button>
-                            <button class="text-red-600 hover:text-red-800 focus:outline-none focus:underline">
-                                <a href="{{ route('brands.destroy', $brand->id) }}">Delete</a>
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-
-</div>
-<!-- End Content -->
+        <!-- End Content -->
 
     </main>
 
@@ -497,26 +534,26 @@
         const sidebarOverlay = document.querySelector('.sidebar-overlay')
         const sidebarMenu = document.querySelector('.sidebar-menu')
         const main = document.querySelector('.main')
-        sidebarToggle.addEventListener('click', function (e) {
+        sidebarToggle.addEventListener('click', function(e) {
             e.preventDefault()
             main.classList.toggle('active')
             sidebarOverlay.classList.toggle('hidden')
             sidebarMenu.classList.toggle('-translate-x-full')
         })
-        sidebarOverlay.addEventListener('click', function (e) {
+        sidebarOverlay.addEventListener('click', function(e) {
             e.preventDefault()
             main.classList.add('active')
             sidebarOverlay.classList.add('hidden')
             sidebarMenu.classList.add('-translate-x-full')
         })
-        document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (item) {
-            item.addEventListener('click', function (e) {
+        document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function(item) {
+            item.addEventListener('click', function(e) {
                 e.preventDefault()
                 const parent = item.closest('.group')
                 if (parent.classList.contains('selected')) {
                     parent.classList.remove('selected')
                 } else {
-                    document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (i) {
+                    document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function(i) {
                         i.closest('.group').classList.remove('selected')
                     })
                     parent.classList.add('selected')
@@ -529,14 +566,13 @@
 
         // start: Popper
         const popperInstance = {}
-        document.querySelectorAll('.dropdown').forEach(function (item, index) {
+        document.querySelectorAll('.dropdown').forEach(function(item, index) {
             const popperId = 'popper-' + index
             const toggle = item.querySelector('.dropdown-toggle')
             const menu = item.querySelector('.dropdown-menu')
             menu.dataset.popperId = popperId
             popperInstance[popperId] = Popper.createPopper(toggle, menu, {
-                modifiers: [
-                    {
+                modifiers: [{
                         name: 'offset',
                         options: {
                             offset: [0, 8],
@@ -552,7 +588,7 @@
                 placement: 'bottom-end'
             });
         })
-        document.addEventListener('click', function (e) {
+        document.addEventListener('click', function(e) {
             const toggle = e.target.closest('.dropdown-toggle')
             const menu = e.target.closest('.dropdown-menu')
             if (toggle) {
@@ -572,29 +608,37 @@
         })
 
         function hideDropdown() {
-            document.querySelectorAll('.dropdown-menu').forEach(function (item) {
+            document.querySelectorAll('.dropdown-menu').forEach(function(item) {
                 item.classList.add('hidden')
             })
         }
+
         function showPopper(popperId) {
-            popperInstance[popperId].setOptions(function (options) {
+            popperInstance[popperId].setOptions(function(options) {
                 return {
                     ...options,
                     modifiers: [
                         ...options.modifiers,
-                        { name: 'eventListeners', enabled: true },
+                        {
+                            name: 'eventListeners',
+                            enabled: true
+                        },
                     ],
                 }
             });
             popperInstance[popperId].update();
         }
+
         function hidePopper(popperId) {
-            popperInstance[popperId].setOptions(function (options) {
+            popperInstance[popperId].setOptions(function(options) {
                 return {
                     ...options,
                     modifiers: [
                         ...options.modifiers,
-                        { name: 'eventListeners', enabled: false },
+                        {
+                            name: 'eventListeners',
+                            enabled: false
+                        },
                     ],
                 }
             });
@@ -604,16 +648,17 @@
 
 
         // start: Tab
-        document.querySelectorAll('[data-tab]').forEach(function (item) {
-            item.addEventListener('click', function (e) {
+        document.querySelectorAll('[data-tab]').forEach(function(item) {
+            item.addEventListener('click', function(e) {
                 e.preventDefault()
                 const tab = item.dataset.tab
                 const page = item.dataset.tabPage
-                const target = document.querySelector('[data-tab-for="' + tab + '"][data-page="' + page + '"]')
-                document.querySelectorAll('[data-tab="' + tab + '"]').forEach(function (i) {
+                const target = document.querySelector('[data-tab-for="' + tab + '"][data-page="' + page +
+                    '"]')
+                document.querySelectorAll('[data-tab="' + tab + '"]').forEach(function(i) {
                     i.classList.remove('active')
                 })
-                document.querySelectorAll('[data-tab-for="' + tab + '"]').forEach(function (i) {
+                document.querySelectorAll('[data-tab-for="' + tab + '"]').forEach(function(i) {
                     i.classList.add('hidden')
                 })
                 item.classList.add('active')
@@ -629,8 +674,7 @@
             type: 'line',
             data: {
                 labels: generateNDays(7),
-                datasets: [
-                    {
+                datasets: [{
                         label: 'Active',
                         data: generateRandomData(7),
                         borderWidth: 1,
@@ -673,9 +717,9 @@
 
         function generateNDays(n) {
             const data = []
-            for(let i=0; i<n; i++) {
+            for (let i = 0; i < n; i++) {
                 const date = new Date()
-                date.setDate(date.getDate()-i)
+                date.setDate(date.getDate() - i)
                 data.push(date.toLocaleString('en-US', {
                     month: 'short',
                     day: 'numeric'
@@ -683,16 +727,15 @@
             }
             return data
         }
+
         function generateRandomData(n) {
             const data = []
-            for(let i=0; i<n; i++) {
+            for (let i = 0; i < n; i++) {
                 data.push(Math.round(Math.random() * 10))
             }
             return data
         }
         // end: Chart
-
-
     </script>
 
 

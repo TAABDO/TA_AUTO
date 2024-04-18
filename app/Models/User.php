@@ -2,27 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Model implements HasMedia
+class User extends Model implements HasMedia ,Authenticatable
 {
-    use HasFactory, InteractsWithMedia ,SoftDeletes;
+    use HasFactory, InteractsWithMedia ,SoftDeletes ,  AuthenticatableTrait;
 
     protected $fillable = [
-        'name',
+        'fullname',
         'email',
         'password',
-        'adresse',
-        'Phone',
+        'address',
+        'phone',
         'status',
-        'delete_at',
-        'create_at',
-        'update_at',
-
+        'agence_id',
+        'deleted_at',
+        'created_at',
+        'updated_at',
     ];
 
     public function roles()
@@ -35,8 +37,13 @@ class User extends Model implements HasMedia
         return $this->belongsTo(Agence::class);
     }
 
-    public function cars()
+    public function blogs()
     {
-        return $this->hasMany(Car::class);
+        return $this->hasMany(Blog::class);
+    }
+
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class);
     }
 }

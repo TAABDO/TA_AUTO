@@ -14,9 +14,9 @@ class Announcement extends Model implements HasMedia
 
 
 
-    protected $fillable=
+    protected $fillable =
     [
-        'titel',
+        'title',
         'description',
         'price',
         'situation',
@@ -32,6 +32,7 @@ class Announcement extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
     }
+
     public function cars()
     {
         return $this->hasMany(Car::class);

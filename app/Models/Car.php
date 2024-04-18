@@ -16,26 +16,26 @@ class Car extends Model implements HasMedia
     protected $fillable = [
         'color',
         'model',
-        'seats',
+        'seat',
         'km',
         'year',
-        'situation',
+        'condition',
         'transmission',
         'fuel_type',
         'engine_capacity',
         'brand_id',
         'annoncement_id',
-        'user_id',
+        // 'user_id',
         'delete_at',
         'create_at',
         'update_at'
 
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
     public function announcement()
     {

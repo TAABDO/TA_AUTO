@@ -10,15 +10,14 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::where('status', 'pending')->get();
-
-        return view('admin.admin', compact('users'));
+         $admin=User::All();
+        return view('admin.admin','admin');
     }
 
 
     public function create()
     {
-        return view('admin.create');
+        return view();
     }
 
 
@@ -43,4 +42,12 @@ class UserController extends Controller
         $admin->roles()->sync([$request->role_id]);
         return redirect()->route('admin.index');
     }
+
+
+    // public function userCount()
+    // {
+    //     $userCounts = User::all()->count();
+
+    //     return view('admin.admin', compact('userCount'));
+    // }
 }

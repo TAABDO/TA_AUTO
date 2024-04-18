@@ -8,6 +8,7 @@ use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -15,10 +16,12 @@ class AdminController extends Controller
 
     public function index()
     {
+        $userCounts = User::count();
         $users = User::where('status', 'pending')->get();
         $brands = Brand::all();
+        $user=Auth::user();
 
-        return view('admin.admin', compact('users','brands'));
+        return view('admin.admin', compact('users','brands','userCounts','user'));
     }
 
     public function create()
@@ -27,7 +30,7 @@ class AdminController extends Controller
     }
 
 
-    public function Show(User $admin)
+    public function Show(Brand $admin)
     {
 
         $roles = Role::All();
