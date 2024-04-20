@@ -28,7 +28,7 @@
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                     data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="{{ $user->getFirstMediaUrl('profile') }}" alt="user photo">
+                    <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->getFirstMediaUrl('profile') }}" alt="user photo">
                 </button>
                 <!-- Dropdown menu -->
                 <div class="z-50 hidden my-4 text-base list-none bg-gray-500 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-00 dark:divide-gray-00"
@@ -174,7 +174,7 @@
                 </h1>
             </div>
             <ul class="text-gray-800 text-lg">
-                <li class="px-4 py-2 hover:bg-gray-700 border-b-2 border-gray-500 drop-shadow-2xl rounded">Mes annonces</li>
+                <li class="px-4 py-2 hover:bg-gray-700 border-b-2 border-gray-500 drop-shadow-2xl rounded"><a href="{{ route('reservations') }}">Mes annonces</a></li>
                 <li class="px-4 py-2 hover:bg-gray-700 border-b-2 border-gray-500 drop-shadow-2xl rounded">Mon profil</li>
                 <li class="px-4 py-2 hover:bg-gray-700 border-b-2 border-gray-500 drop-shadow-2xl rounded">Mes favoris</li>
                 <li class="px-4 py-2 hover:bg-gray-700 border-b-2 border-gray-500 drop-shadow-2xl rounded">Déposer une annonce</li>
@@ -191,7 +191,7 @@
         </div>
         <!-- Content -->
 
-        <div class="py-10 sm:py-10 md:py-12 lg:py-20 my-auto flex-grow dark:bg-gray-800">
+        {{--  <div class="py-10 sm:py-10 md:py-12 lg:py-20 my-auto flex-grow dark:bg-gray-800">
             <div class="max-w-screen-lg mx-auto flex flex-col md:flex-row justify-center gap-4">
                 <div class="lg:w-4/4 md:w-full sm:w-full xs:w-full mx-auto shadow-2xl p-4 rounded-xl self-center dark:bg-gray-100/40">
                     <div class="the form section">
@@ -265,10 +265,10 @@
                         </form>
                 </div>
             </div>
-        </div>
+        </div>  --}}
     </div>
 
-    
+
     <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
         <div class="w-full mx-auto max-w-screen-xl p-4 pl-44 md:flex md:items-center md:justify-between">
           <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">TA-AUTO™</a>. All Rights Reserved.

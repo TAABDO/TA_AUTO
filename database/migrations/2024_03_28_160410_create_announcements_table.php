@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('situation',['available', 'sold', 'rented'])->default('available');
             $table->enum('type',['rentel', 'sale']);
             $table->enum('status',['accepted', 'rejected', 'pending'])->default('pending');
+            $table->string('city');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->softDeletes();

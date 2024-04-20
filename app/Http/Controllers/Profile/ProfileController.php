@@ -21,8 +21,9 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail($id);
         // $users = Auth::user();
+        $userReservations = $user->reservations;
 
-        return view('admin.profile.update', compact('user'));
+        return view('admin.profile.update', compact('user', 'userReservations'));
     }
 
     public function edit($id)
@@ -49,7 +50,7 @@ class ProfileController extends Controller
         //     'status' => 'sometimes|string|in:active,inactive,pending',
         //     'agence_id' => 'sometimes|integer|exists:agences,id',
         //     'profile' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
-            
+
         // ]);
 
         $data = $request->all();
@@ -62,5 +63,13 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.index', compact('user'));
     }
-    
+
+    public function myreservations()
+    {
+        $user = Auth::user();
+        $reservations = $user->reservations->announcements;
+
+        return view('admin.profile.myreservations', compact('reservations'));
+    }
+
 }

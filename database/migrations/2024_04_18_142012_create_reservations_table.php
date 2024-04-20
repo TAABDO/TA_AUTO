@@ -9,15 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->date('datereservation');
             $table->enum('status',['pending', 'confirmed', 'canceled'])->default('pending');
+            $table->string('identification_card', 255);
+            $table->string('licence', 255);
+            $table->date('licenceDate');
+            $table->date('pickupDate');
+            $table->date('dropofDate');
+            $table->string('pickupLocation', 255);
+            $table->string('dropofLocation', 255);
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('announcement_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('announcement_id')->references('id')->on('announcements')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

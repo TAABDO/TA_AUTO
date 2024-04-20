@@ -46,4 +46,9 @@ class User extends Model implements HasMedia ,Authenticatable
     {
         return $this->hasMany(Announcement::class);
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

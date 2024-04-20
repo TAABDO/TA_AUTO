@@ -10,7 +10,6 @@ class CarController extends Controller
 {
     public function index()
     {
-        // $announcements = Announcement::with('cars')->paginate(10); // 10 is the number of items per page
         $cars = Car::all();
         $announcements = Announcement::all();
 

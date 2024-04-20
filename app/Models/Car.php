@@ -24,7 +24,7 @@ class Car extends Model implements HasMedia
         'fuel_type',
         'engine_capacity',
         'brand_id',
-        'annoncement_id',
+        'announcement_id',
         // 'user_id',
         'delete_at',
         'create_at',

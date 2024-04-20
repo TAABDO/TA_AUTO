@@ -2,12 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Pages\ContactController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Announcer\AnnouncementController;
@@ -71,7 +72,8 @@ Route::delete('Blog/{blog}', [BlogController::class, 'destroy'])->name('blog.des
 
 
 // Route::get('users',[UserController::class,'index'])->name('users.index');
-
+// Route::get('');
+Route::post('reservations',[ReservationController::class,'store'])->name('reservations.store');
 
 // Route::get('/', function () {
 //     return view('welcome');

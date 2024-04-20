@@ -367,7 +367,7 @@
         </div>
         <!-- end navbar -->
 
-        <!-- Content -->
+        <!-- cars Announcement -->
         <div class="container mx-auto mt-2">
             <div class="flex items-center py-2 overflow-x-auto whitespace-nowrap">
                 <a href="#" class="font-medium text-gray-700 dark:text-gray-800">
@@ -424,6 +424,12 @@
                             <label for="description"
                                 class="block text-sm font-medium text-gray-700">Description</label>
                             <input type="text" id="description" name="description" required
+                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                        </div>
+                        <div class="mb-4">
+                            <label for="city"
+                                class="block text-sm font-medium text-gray-700">City</label>
+                            <input type="text" id="city" name="city" required
                                 class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
                         </div>
                         <div class="mb-4">

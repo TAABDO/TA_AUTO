@@ -18,6 +18,7 @@ class Announcement extends Model implements HasMedia
     [
         'title',
         'description',
+        'city',
         'price',
         'situation',
         'type',
@@ -36,5 +37,10 @@ class Announcement extends Model implements HasMedia
     public function cars()
     {
         return $this->hasMany(Car::class);
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
     }
 }

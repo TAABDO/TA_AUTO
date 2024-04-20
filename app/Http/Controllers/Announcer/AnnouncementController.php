@@ -33,6 +33,7 @@ class AnnouncementController extends Controller
         $validated = $request->validate([
             'title' => 'sometimes|string',
             'description' => 'sometimes|string',
+            'city' => 'sometimes|string',
             'price' => 'sometimes',
             'type' => 'sometimes',
             'color' => 'sometimes',
@@ -56,7 +57,6 @@ class AnnouncementController extends Controller
         }
 
         // dd($request->all());
-
         $car = new Car($validated);
         $car->announcement()->associate($announcement);
         $car->save();
@@ -64,49 +64,48 @@ class AnnouncementController extends Controller
         return redirect()->route('announce.index');
     }
 
+    // public function show($id)
+    // {
+    //     $announcement = Announcement::findOrFail($id);
 
-    public function show($id)
-    {
-        $announcement = Announcement::findOrFail($id);
+    //     return view('announcements.show', compact('announcement'));
+    // }
 
-        return view('announcements.show', compact('announcement'));
-    }
+    // public function edit($id)
+    // {
+    //     $announcement = Announcement::findOrFail($id);
 
-    public function edit($id)
-    {
-        $announcement = Announcement::findOrFail($id);
+    //     return view('announcements.edit', compact('announcement'));
+    // }
 
-        return view('announcements.edit', compact('announcement'));
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     $validated = $request->validate([
+    //         // 'title' => 'sometimes|string',
+    //         // 'description' => 'sometimes|string',
+    //         // 'price' => 'sometimes',
+    //         // 'type' => 'sometimes',
+    //         // 'color' => 'sometimes',
+    //         // 'model' => 'sometimes',
+    //         // 'seat' => 'sometimes',
+    //         // 'condition' => 'sometimes',
+    //         // 'km' => 'sometimes',
+    //         // 'year' => 'sometimes',
+    //         // 'transmission' => 'sometimes',
+    //         // 'fuel_type' => 'sometimes',
+    //         // 'engine_capacity' => 'sometimes',
+    //         // 'brand_id' => 'sometimes',
+    //         // 'images' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
+    //     ]);
 
-    public function update(Request $request, $id)
-    {
-        $validated = $request->validate([
-            // 'title' => 'sometimes|string',
-            // 'description' => 'sometimes|string',
-            // 'price' => 'sometimes',
-            // 'type' => 'sometimes',
-            // 'color' => 'sometimes',
-            // 'model' => 'sometimes',
-            // 'seat' => 'sometimes',
-            // 'condition' => 'sometimes',
-            // 'km' => 'sometimes',
-            // 'year' => 'sometimes',
-            // 'transmission' => 'sometimes',
-            // 'fuel_type' => 'sometimes',
-            // 'engine_capacity' => 'sometimes',
-            // 'brand_id' => 'sometimes',
-            // 'images' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
-        ]);
+    //     $announcement = Announcement::findOrFail($id);
+    //     $announcement->update($validated);
 
-        $announcement = Announcement::findOrFail($id);
-        $announcement->update($validated);
+    //     $car = $announcement->car;
+    //     $car->update($validated);
 
-        $car = $announcement->car;
-        $car->update($validated);
-
-        return redirect()->route('dashboard');
-    }
+    //     return redirect()->route('dashboard');
+    // }
 
     public function destroy($id)
     {
@@ -116,38 +115,4 @@ class AnnouncementController extends Controller
         return redirect()->route('dashboard');
     }
 
-    // public function filterCar(Request $request)
-    // {
-    //    dd($request);
-    // $model = $request->get('model');
-    // $year = $request->get('year');
-    // $situation = $request->get('situation');
-    // $price = $request->get('price');
-
-    // $query = Car::query();
-
-    // if ($model) {
-    //     $query->where('model', 'like', "%{$model}%");
-    // }
-
-    // if ($year) {
-    //     $query->where('year', $year);
-    // }
-
-    // if ($situation) {
-    //     $query->where('situation', $situation);
-    // }
-
-    // if ($price) {
-    //     $query->where('price', '<=', $price);
-    // }
-
-    // $cars = $query->get();
-
-    // if ($request->ajax()) {
-    //     return view('welcome', ['cars' => $cars])->render();
-    // }
-
-    //     return view('welcome', compact('cars' ));
-    // }
 }
