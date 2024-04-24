@@ -1,27 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Profile;
+namespace App\Http\Controllers\client;
 
-use App\Models\User;
-use App\Models\Reservation;
-use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class ClientProfileController extends Controller
 {
     public function index()
-{
-    // Get the authenticated user
-    $user = auth()->user();
-    // $reservation = Reservation::where('announcement_id')->first();
+    {
+        $user = Auth::user();
 
-    // Get the reservations with their associated announcements
-    $reservations = $user->reservations()->with('announcement')->get();
-
-    return view('announcer.profile.myreservation',['reservations'=>$reservations]);
-}
+        return view('announcer.profile.profileUser', compact('user'));
+    }
 
     public function Show($id)
     {

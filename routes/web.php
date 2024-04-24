@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\BlogController;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\UserController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Pages\ContactController;
 use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\Admin\BlogStatusController;
 use App\Http\Controllers\Announcer\AnnouncementController;
 
 /*
@@ -26,10 +28,11 @@ use App\Http\Controllers\Announcer\AnnouncementController;
 // ============================ Admin =============================
 
 Route::resource('Admin',AdminController::class);
-Route::get('userCount',[AdminController::class,'userCount']);
+Route::get('Blog', [BlogStatusController::class, 'index'])->name('blog.index');
+Route::get('Blog/{blog}', [BlogStatusController::class, 'edit'])->name('blogStatus.edit');
+Route::put('Blog/{blog}', [BlogStatusController::class, 'accepteblog'])->name('blog.accepteblog');
 
 Route::resource('profile',ProfileController::class);
-
 Route::resource('brands',BrandController::class);
 
 
@@ -71,19 +74,14 @@ Route::put('Blog/{blog}/update', [BlogController::class, 'update'])->name('blog.
 Route::delete('Blog/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
 
 
-// Route::get('users',[UserController::class,'index'])->name('users.index');
-// Route::get('');
+
 Route::post('reservations',[ReservationController::class,'store'])->name('reservations.store');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// })->name('home');
+
 
 Route::get('car',[CarController::class,'index'])->name('car.index');
 Route::get('filtercar',[CarController::class,'filterCar'])->name('car.filterCar');
 Route::get('car/{car}',[CarController::class,'show'])->name('car.details');
-
-
 
 
 Route::get('login',[AuthController::class,'login'])->name('login');
@@ -91,25 +89,3 @@ Route::get('register',[AuthController::class,'register'])->name('register');
 Route::post('regesterUser',[AuthController::class,'regesterUser'])->name('regesterUser');
 Route::post('loginUser',[AuthController::class,'loginUser'])->name('loginUser');
 Route::POST('logout',[AuthController::class,'logout'])->name('logout');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

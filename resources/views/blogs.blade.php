@@ -127,7 +127,7 @@
                 <div class="text-center">
                     <div class="section-title">
                         <span class="text-red-500 font-semibold">Latest blogs</span>
-                        <h2 class="text-3xl font-bold text-gray-800">Best Vehicle Offers</h2>
+                        <h2 class="text-3xl font-bold text-gray-800">browse our Latest blogs </h2>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 pt-5 p-7 md:grid-cols-2 lg:grid-cols-4 gap-6">

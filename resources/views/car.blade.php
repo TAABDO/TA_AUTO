@@ -62,28 +62,23 @@
                         <div class="select-list-item">
                             <p class="text-gray-500">Select Transmission</p>
                             <select name="transmission" class="w-full border rounded p-2 mb-2">
-                                @foreach ($cars as $car)
-                                    <option class="text-gray-500" value="{{ $car->transmission }}">
-                                        {{ $car->transmission }}
+                                @foreach ($announcements as $announcement)
+                                    <option class="text-gray-500" value="{{ $announcement->transmission }}">
+                                        {{ $announcement->transmission }}
                                     </option>
                                 @endforeach
-                                {{--  <option data-display="">Select transmission</option>
-                                <option class="text-gray-500" value="automatic">automatic</option>
-                                <option class="text-gray-500" value="manual">manual</option>  --}}
+
                             </select>
                         </div>
                         <div class="select-list-item">
                             <p class="text-gray-500">Select Model</p>
                             <select name="model" class="w-full border rounded p-2 mb-2">
-                                @foreach ($cars as $car)
-                                    <option class="text-gray-500" value="{{ $car->model }}">
-                                        {{ $car->model }}
+                                @foreach ($announcements as $announcement)
+                                    <option class="text-gray-500" value="{{ $announcement->model }}">
+                                        {{ $announcement->model }}
                                     </option>
                                 @endforeach
-                                {{--  <option class="text-gray-500" value=""></option>
-                                <option class="text-gray-500" value="Mercedes-EQ EQS Sedan">Mercedes-EQ EQS Sedan</option>
-                                <option class="text-gray-500" value="audi">audi</option>
-                                <option class="text-gray-500" value="BMW">BMW</option>  --}}
+
                             </select>
                         </div>
                         <div class="select-list-item">
@@ -108,91 +103,61 @@
     </section>
 
     {{--  ===================================== cards =============  --}}
-
-    <div class="flex flex-wrap justify-end sm:justify-center gap-10 pl-[20rem] pt-[5rem] pb-[5rem] ">
-        @foreach ($cars as $car)
-            <div class="w-full sm:w-auto md:w-auto lg:w-auto">
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+    <div class="flex flex-col">
+        <div class="flex flex-wrap justify-end sm:justify-center gap-10 pl-[20rem] pt-[5rem] pb-[5rem] ">
+            @foreach ($announcements as $announcement)
+                <div class="w-full sm:w-auto md:w-auto lg:w-auto">
                     <div class="bg-white rounded-lg overflow-hidden shadow-lg">
-                        <div class="relative">
-                            <div class="car__item__pic__slider owl-carousel">
-                                <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">
-                                {{--  <img src="{{ $car->announcement->getFirstMediaUrl('images') }}" class="w-[20%]" alt="Car 1">  --}}
-                            </div>
-                            <span
-                                class="car-option sale absolute top-0 right-0 bg-red-500 text-white py-1 px-2 rounded-bl-lg">
-                                For {{ $car->announcement->type }}
-                            </span>
-                        </div>
-                        <div class="p-4">
-                            <div class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">
-                                <span>
-                                    {{ $car->year }}
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                            <div class="relative">
+                                <div class="car__item__pic__slider owl-carousel">
+                                    <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">
+                                    {{--  <img src="{{ $announcement->getFirstMediaUrl('images') }}" class="w-[20%]" alt="Car 1">  --}}
+                                </div>
+                                <span
+                                    class="car-option sale absolute top-0 right-0 bg-red-500 text-white py-1 px-2 rounded-bl-lg">
+                                    For {{ $announcement->type }}
                                 </span>
-
                             </div>
-                            <h5 class="text-xl font-semibold mt-2"><a href="#"
-                                    class="text-gray-800 hover:text-red-500"> {{ $car->model }}
-                                </a></h5>
-                            <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
-                                <li><span>{{ $car->km }}</span> mi | </li>
-                                <li>{{ $car->transmission }} | </li>
-                                <li><span>{{ $car->engine_capacity }}</span> hp |</li>
-                            </ul>
-                        </div>
-                        <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
-                            <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">
-                                {{ $car->announcement->situation }}
-                            </h6>
-                            <h6 class="text-lg font-semibold p-2">${{ $car->announcement->price }}<span
-                                    class="text-sm">/Month</span>
-                            </h6>
-                        </div>
-                        <div class="p-4">
-                            <a href="{{ route('car.details', $car->id) }}"
-                                class="text-white bg-blue-700 w-10 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Details</a>
+                            <div class="p-4">
+                                <div
+                                    class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">
+                                    <span>
+                                        {{ $announcement->car->year }}
+                                    </span>
+
+                                </div>
+                                <h5 class="text-xl font-semibold mt-2"><a href="#"
+                                        class="text-gray-800 hover:text-red-500"> {{ $announcement->car->model }}
+                                    </a></h5>
+                                <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
+                                    <li><span>{{ $announcement->car->km }}</span> mi | </li>
+                                    <li>{{ $announcement->car->transmission }} | </li>
+                                    <li><span>{{ $announcement->car->engine_capacity }}</span> hp |</li>
+                                </ul>
+                            </div>
+                            <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
+                                <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">
+                                    {{ $announcement->situation }}
+                                </h6>
+                                <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span
+                                        class="text-sm">/Month</span>
+                                </h6>
+                            </div>
+                            <div class="p-4">
+                                <a href="{{ route('car.details', $announcement->id) }}"
+                                    class="text-white bg-blue-700 w-10 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Details</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
     <div>
-        <nav class="mb-4 flex justify-center space-x-4" aria-label="Pagination">
-
-            <span class="rounded-lg border border-teal-500 px-2 py-2 text-gray-700">
-                <span class="sr-only">Previous</span>
-                <svg class="mt-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                    aria-hidden="true">
-                    <path fill-rule="evenodd"
-                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                        clip-rule="evenodd">
-                    </path>
-                </svg>
-            </span>
-
-            <span class="rounded-lg border border-teal-500 bg-teal-500 px-4 py-2 text-white">1</span>
-
-            <a class="rounded-lg border border-teal-500 px-4 py-2 text-gray-700" href="/page/2">2
-            </a>
-
-            <a class="rounded-lg border border-teal-500 px-4 py-2 text-gray-700" href="/page/3">3
-            </a>
-
-            <a class="rounded-lg border border-teal-500 px-2 py-2 text-gray-700" href="/page/2">
-                <span class="sr-only">Next</span>
-                <svg class="mt-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                    aria-hidden="true">
-                    <path fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd">
-                    </path>
-                </svg>
-            </a>
-
-        </nav>
+        {{ $announcements->links() }}
     </div>
- </div>
+    </div>
     <!-- Cards -->
     {{--  ========================================================================================= header ===========================  --}}
 

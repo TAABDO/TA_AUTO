@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Announcement extends Model implements HasMedia
 {
-    use HasFactory , SoftDeletes ,InteractsWithMedia;
-
-
+    use HasFactory , InteractsWithMedia ,SoftDeletes;
 
     protected $fillable =
     [
@@ -24,9 +22,10 @@ class Announcement extends Model implements HasMedia
         'type',
         'status',
         'user_id',
+        'car_id',
         'delete_at',
         'create_at',
-        'update_at'
+        'update_at',
     ];
 
     public function user()
@@ -34,9 +33,9 @@ class Announcement extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
-    public function cars()
+    public function car()
     {
-        return $this->hasMany(Car::class);
+        return $this->belongsTo(Car::class);
     }
 
     public function reservations()

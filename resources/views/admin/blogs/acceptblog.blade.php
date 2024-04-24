@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    {{--  <link href="{{ asset('roussource') }}" rel="stylesheet">--}}
+    {{--  <link href="{{ asset('roussource') }}" rel="stylesheet"> --}}
 </head>
 
 <body class="bg-gray-200 py-20">
@@ -99,93 +99,91 @@
 
     <div class="flex justify-center">
         <div class="w-1/2">
-    <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="shadow overflow-hidden border-b border-gray-200 p-5 sm:rounded-lg">
-                    <div>
-                        <a href="{{ route('blog.create') }}"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Blog</a>
-                    </div>
-                    <table class="min-w-full divide-y divide-gray-200">
+            <div class="flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="shadow overflow-hidden border-b border-gray-200 p-5 sm:rounded-lg">
 
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Title
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Description
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    User
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Image
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Actions
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($blogs as $blog)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ \Illuminate\Support\Str::limit($blog->title, 30) }}</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-500 overflow-x-auto sm:-mx-6 lg:-mx-8">{{ \Illuminate\Support\Str::limit($blog->description, 50) }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ $blog->user->fullname }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <img src="{{ $blog->getFirstMediaUrl('Blog_Image') }}" alt="Blog Image">
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form action="{{ route('blog.edit', $blog->id) }}" method="POST" class="inline">
-                                            @csrf
-                                            @method('GET')
-                                            <button type="submit" class="text-indigo-600 hover:text-indigo-900">Edit</button>
-                                        </form>
-                                        {{--  <a href="{{ route('blog.edit', $blog->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>  --}}
-                                        <form action="{{ route('blog.destroy', $blog->id) }}" method="POST" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            <form action="{{ route('blog.accepteblog',$blog-id) }}">
+
+                                <form action="{{ route('adminevent.update', ['adminevent' => $event->id]) }}" method="POST" enctype="multipart/form-data" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="mb-4">
+                                        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                                        <select name="status" id="status" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            @foreach ($statuses as $status)
+                                                <option value="{{ $status }}" {{ $event->status == $status ? 'selected' : '' }}>
+                                                    {{ ucfirst($status) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <button type="submit" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                            Update Event Status
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 
-<footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800 ">
-    <div class="w-full mx-auto max-w-screen-xl p-4 pl-44 md:flex md:items-center md:justify-between">
-      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">TA-AUTO™</a>. All Rights Reserved.
-    </span>
-    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-        <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Home</a>
-        </li>
-        <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Cars</a>
-        </li>
-        <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Blogs</a>
-        </li>
-        <li>
-            <a href="#" class="hover:underline">Contact</a>
-        </li>
-    </ul>
-    </div>
-</footer>
-    </body>
-    </html>
+    {{--  <button class="bg-rose-500 text-white rounded-md px-4 py-2 hover:bg-rose-700 transition" onclick="openModal('modelConfirm')">
+    update BolgStatus
+ </button>  --}}
+
+ </div>
+
+    <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800 ">
+        <div class="w-full mx-auto max-w-screen-xl p-4 pl-44 md:flex md:items-center md:justify-between">
+            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a
+                    href="https://flowbite.com/" class="hover:underline">TA-AUTO™</a>. All Rights Reserved.
+            </span>
+            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Home</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Cars</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Blogs</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        window.openModal = function(modalId) {
+            document.getElementById(modalId).style.display = 'block'
+            document.getElementsByTagName('body')[0].classList.add('overflow-y-hidden')
+        }
+
+        window.closeModal = function(modalId) {
+            document.getElementById(modalId).style.display = 'none'
+            document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+        }
+
+        // Close all modals when press ESC
+        document.onkeydown = function(event) {
+            event = event || window.event;
+            if (event.keyCode === 27) {
+                document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+                let modals = document.getElementsByClassName('modal');
+                Array.prototype.slice.call(modals).forEach(i => {
+                    i.style.display = 'none'
+                })
+            }
+        };
+    </script>
+</body>
+
+</html>

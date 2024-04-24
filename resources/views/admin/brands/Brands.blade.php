@@ -102,7 +102,7 @@
 {{--  ============================= end dashboard =============================  --}}
 
 <!-- brands Table -->
-<section class="overflow-x-auto">
+<section class="max-w-2xl mx-auto bg-white p-8 shadow-md rounded-md">
     <div class="overflow-hidden w-[100%]">
         <table class="min-w-full divide-y divide-gray-200 bg-white shadow-md rounded-lg w-[50%]">
             <thead class="mt-10 mb-10">

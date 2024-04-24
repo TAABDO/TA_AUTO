@@ -42,7 +42,7 @@
                                     aria-current="page">Home</a>
                             </li>
                             <li>
-                                <a href="{{ route('car.index') }}"
+                                <a href="{{ route('announce.index') }}"
                                     class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-700 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Car</a>
                             </li>
                             <li>
@@ -143,7 +143,7 @@
                             aria-current="page">Home</a>
                     </li>
                     <li>
-                        <a href="{{ route('car.index') }}"
+                        <a href="{{ route('announce.index') }}"
                             class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-700 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Car</a>
                     </li>
                     <li>

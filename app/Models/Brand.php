@@ -13,7 +13,7 @@ class Brand extends Model implements HasMedia
     use HasFactory, SoftDeletes ,InteractsWithMedia;
 
 
-    protected $fillable=
+    protected $fillable =
     [
         'name',
         'delete_at',
@@ -21,9 +21,9 @@ class Brand extends Model implements HasMedia
         'update_at'
     ];
 
-          public function Car()
+          public function CarAnnouncement()
           {
-                return $this->hasMany(Car::class);
+                return $this->hasMany(CarAnnouncement::class);
           }
 
 

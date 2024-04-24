@@ -22,8 +22,6 @@ return new class extends Migration
             $table->enum('transmission',['manual','automatic']);
             $table->enum('fuel_type',['petrol','diesel','electric']);
             $table->string('engine_capacity');
-            $table->unsignedBigInteger('announcement_id');
-            $table->foreign('announcement_id')->references('id')->on('announcements')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade')->onUpdate('cascade');
             $table->softDeletes();

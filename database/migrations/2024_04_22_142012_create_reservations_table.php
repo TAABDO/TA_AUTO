@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('identification_card', 255);
             $table->string('licence', 255);
             $table->date('licenceDate');
-            $table->date('pickupDate');
-            $table->date('dropofDate');
+            $table->datetime('pickupDate');
+            $table->datetime('dropofDate');
             $table->string('pickupLocation', 255);
             $table->string('dropofLocation', 255);
             $table->unsignedBigInteger('user_id');

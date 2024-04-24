@@ -9,7 +9,6 @@ class Reservation extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
         'identification_card',
         'licence',
@@ -20,8 +19,8 @@ class Reservation extends Model
         'dropofLocation',
         'user_id',
         'announcement_id',
-        'create_at',
-        'update_at'
+        // 'create_at',
+        // 'update_at'
     ];
 
     public function user()

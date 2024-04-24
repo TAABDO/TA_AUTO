@@ -404,141 +404,105 @@
             <div class="form">
                 <form id="signUpForm" action="{{ route('announce.store') }}" method="POST" class="max-w-md" enctype="multipart/form-data">
                     @csrf
-                    @method('POST')
-                    <!-- start step indicators -->
-                    <div class="form-header">
-                        <span class="stepIndicator">Announcement </span>
-                        <span class="stepIndicator">Car</span>
-                        <span class="stepIndicator">Cars images</span>
+                    <div class="mb-4">
+                        <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                        <input type="text" id="title" name="title" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
                     </div>
-                    <!-- end step indicators -->
-                    <!-- step one -->
-                    <div class="step">
-                        <p>Announcement Detaills</p>
-                        <div class="mb-4">
-                            <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                            <input type="text" id="title" name="title" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="description"
-                                class="block text-sm font-medium text-gray-700">Description</label>
-                            <input type="text" id="description" name="description" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="city"
-                                class="block text-sm font-medium text-gray-700">City</label>
-                            <input type="text" id="city" name="city" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-                            <input type="number" id="price" name="price" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-                            <select name="type" id="type"
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                                @foreach ($types as $type)
-                                    <option value="{{ $type }}">{{ $type }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
+                    <div class="mb-4">
+                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <input type="text" id="description" name="description" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
                     </div>
-                    <!-- step two -->
-                    <div class="step">
-                        <p>The Car Detaills</p>
-                        <div class="mb-4">
-                            <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
-                            <input type="text" id="model" name="model" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="seat" class="block text-sm font-medium text-gray-700">seat</label>
-                            <input type="text" id="seat" name="seat" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="color" class="block text-sm font-medium text-gray-700">color</label>
-                            <input type="text" id="color" name="color" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="year" class="block text-sm font-medium text-gray-700">year</label>
-                            <input type="text" id="year" name="year" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="condition" class="block text-sm font-medium text-gray-700">CarCondition</label>
-                            <input type="text" id="condition" name="condition" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="transmission"
-                                class="block text-sm font-medium text-gray-700">transmission</label>
-                                <select name="transmission" id="transmission" class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                                    <option value="manual">Manual</option>
-                                    <option value="automatic">Automatic</option>
-                                </select>
-                        </div>
-                        <div class="mb-4">
-                            <label for="fuel_type" class="block text-sm font-medium text-gray-700">fuel_type</label>
-                            <select name="fuel_type" id="fuel_type" class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                                <option value="petrol">petrol</option>
-                                <option value="diesel">diesel</option>
-                                <option value="electric">electric</option>
-                            </select>
-
-                        </div>
-                        <div class="mb-4">
-                            <label for="engine_capacity"
-                                class="block text-sm font-medium text-gray-700">engine_capacity</label>
-                            <input type="text" id="engine_capacity" name="engine_capacity" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="km" class="block text-sm font-medium text-gray-700">kélometrage</label>
-                            <input type="text" id="km" name="km" required
-                                class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
-                        </div>
-                        <div class="mb-4">
-                            <label for="brand_id" class="block text-sm font-medium text-gray-700">brand</label>
-                            <select name="brand_id" id="brand_id">
-                                @foreach ($brands as $brand)
-                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                @endforeach
-                           </select>
-                        </div>
+                    <div class="mb-4">
+                        <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                        <input type="text" id="city" name="city" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
                     </div>
-                    <!-- step three -->
-                    {{--  <div class="step">  --}}
-                        {{--  <input type="file" name="images[]" multiple>  --}}
-                        <div class=" step rounded-md border border-indigo-500 bg-gray-50 p-4 shadow-md w-36">
-                           <label for="upload" class="flex flex-col items-center gap-2 cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-white stroke--500" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            <span class="text-gray-600 font-medium">Upload file</span>
-                           </label>
-                          <input id="upload" type="file" name="images[]" multiple class="hidden" />
-                        </div>
-                    {{--  </div>  --}}
+                    <div class="mb-4">
+                        <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                        <input type="number" id="price" name="price" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+                        <select name="type" id="type" class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                            @foreach ($types as $type)
+                                <option value="{{ $type }}">{{ $type }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
+                        <input type="text" id="model" name="model" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="seat" class="block text-sm font-medium text-gray-700">Seat</label>
+                        <input type="number" id="seat" name="seat" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="color" class="block text-sm font-medium text-gray-700">Color</label>
+                        <input type="text" id="color" name="color" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="year" class="block text-sm font-medium text-gray-700">Year</label>
+                        <input type="text" id="year" name="year" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="condition" class="block text-sm font-medium text-gray-700">Car Condition</label>
+                        {{--  <input type="text" id="condition" name="condition" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">  --}}
+                        <select name="condition" id="condition" class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                            <option value="new">new</option>
+                            <option value="used">used</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="transmission" class="block text-sm font-medium text-gray-700">Transmission</label>
+                        <select name="transmission" id="transmission" class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                            <option value="manual">Manual</option>
+                            <option value="automatic">Automatic</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="fuel_type" class="block text-sm font-medium text-gray-700">Fuel Type</label>
+                        <select name="fuel_type" id="fuel_type" class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                            <option value="petrol">Petrol</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="electric">Electric</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="engine_capacity" class="block text-sm font-medium text-gray-700">Engine Capacity</label>
+                        <input type="number" id="engine_capacity" name="engine_capacity" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="km" class="block text-sm font-medium text-gray-700">Kilometrage</label>
+                        <input type="number" id="km" name="km" required class="mt-1 p-2 block w-full border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="brand_id" class="block text-sm font-medium text-gray-700">Brand</label>
+                        <select name="brand_id" id="brand_id">
+                            @foreach ($brands as $brand)
+                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class=" step rounded-md border border-indigo-500 bg-gray-50 p-4 shadow-md w-36">
+                        <label for="upload" class="flex flex-col items-center gap-2 cursor-pointer">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-white stroke--500" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                         </svg>
+                         <span class="text-gray-600 font-medium">Upload file</span>
+                        </label>
+                       <input id="upload" type="file" name="images[]" multiple class="hidden" />
+                     </div>
                     <!-- start previous / next buttons -->
                     <div class="form-footer">
-                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                        <button type="submit">Submit</button>
                     </div>
                     <!-- end previous / next buttons -->
-                    <button type="submit" id="submit" style="display: none;">submit</button>
                 </form>
+
             </div>
         </div>
         <!-- End Content -->
     </main>
-
 
     <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800 z-10">
         <div class="w-full mx-auto max-w-screen-xl p-4 pl-44 md:flex md:items-center md:justify-between">

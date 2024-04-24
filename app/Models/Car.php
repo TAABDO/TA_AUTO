@@ -24,22 +24,15 @@ class Car extends Model implements HasMedia
         'fuel_type',
         'engine_capacity',
         'brand_id',
-        'announcement_id',
-        // 'user_id',
         'delete_at',
         'create_at',
         'update_at'
 
     ];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-
     public function announcement()
     {
-        return $this->belongsTo(Announcement::class);
+        return $this->hasOne(Announcement::class);
     }
 
     public function brand()

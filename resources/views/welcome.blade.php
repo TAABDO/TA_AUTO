@@ -34,45 +34,42 @@
     </div>
 
     <div class="flex flex-wrap justify-center sm:justify-center md:justify-center lg:justify-center gap-10 pt-10 p-10">
-        @foreach ($cars as $car)
+        @foreach ($announcements as $announcement)
             <div class="w-full sm:w-auto md:w-auto lg:w-auto">
                 <div
                     class="bg-white rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
                     <div class="relative">
                         <div class="car__item__pic__slider owl-carousel">
                             {{--  <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">  --}}
-                            <img src="{{ $car->announcement->getFirstMediaUrl('images') }}" class="w-full h-44"" alt="Car 1">
+                            <img src="{{ $announcement->getFirstMediaUrl('images') }}" class="w-full h-44"" alt="Car 1">
                         </div>
-                        @if ($car->announcement)
                             <span
                                 class="car-option sale absolute top-0 right-0 bg-red-500 text-white py-1 px-2 rounded-bl-lg">
-                                For {{ $car->announcement->type }}
+                                For {{ $announcement->type }}
                             </span>
-                        @endif
                     </div>
                     <div class="p-4">
                         <div class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">
-                            {{ $car->year }}
+                            {{ $announcement->car->year }}
                         </div>
                         <h5 class="text-xl font-semibold mt-2"><a href="#"
-                                class="text-gray-800 hover:text-red-500"> {{ $car->model }}
+                                class="text-gray-800 hover:text-red-500"> {{ $announcement->car->model }}
                             </a></h5>
                         <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
-                            <li><span>{{ $car->km }}</span> mi | </li>
-                            <li>{{ $car->transmission }} | </li>
-                            <li><span>{{ $car->engine_capacity }}</span> hp |</li>
+                            <li><span>{{ $announcement->car->km }}</span> mi | </li>
+                            <li>{{ $announcement->car->transmission }} | </li>
+                            <li><span>{{ $announcement->car->engine_capacity }}</span> hp |</li>
                         </ul>
                     </div>
-                    @if ($car->announcement)
                         <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
                             <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">
-                                {{ $car->announcement->situation }}
+                                {{ $announcement->situation }}
                             </h6>
-                            <h6 class="text-lg font-semibold p-2">${{ $car->announcement->price }}<span
+                            <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span
                                     class="text-sm">/Month</span>
                             </h6>
                         </div>
-                    @endif
+
                     <div class="p-2">
                         <a href="#" title="More"
                             class="block w-full py-2 text-center text-white bg-gray-900 font-bold rounded-b-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">

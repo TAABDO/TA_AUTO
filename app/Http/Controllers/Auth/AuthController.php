@@ -65,7 +65,7 @@ class AuthController extends Controller
                 } elseif ($user->roles()->exists() && $user->roles()->first()->name === 'Client') {
                     return redirect()->route('home');
                 } elseif ($user->roles()->exists() && $user->roles()->first()->name === 'Announcer') {
-                    return redirect()->route('Announcer.index');
+                    return redirect()->route('home');
                 } else {
                     return back()->with('fail', 'No role found for this user');
                 }
@@ -84,5 +84,5 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
-    
+
 }

@@ -8,4 +8,9 @@ use Illuminate\Http\Request;
 class dashAnnuncerController extends Controller
 {
     //
+
+    public function index()
+    {
+        return view('announcer.dashboard');
+    }
 }

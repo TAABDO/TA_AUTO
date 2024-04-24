@@ -50,7 +50,7 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        
+
         $blog = Blog::findOrFail($id);
         return view('blog-details', compact('blog'));
     }
@@ -84,4 +84,20 @@ class BlogController extends Controller
 
         return redirect()->route('Blog.Blog')->with('message', 'The blog has been deleted successfully');
     }
+
+
+    
+
+    // public function acceptblog(Request $request, Blog $blog)
+    // {
+    //     $validatedData = $request->validate([
+    //         'blogStatus' => 'required',
+    //     ]);
+
+    //     $blog->update($validatedData);
+
+    //     return redirect()->route('Blog.Blog')->with('message', 'The blog has been accepted successfully');
+    // }
+
+
 }

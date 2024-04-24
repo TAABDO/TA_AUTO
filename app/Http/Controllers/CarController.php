@@ -18,12 +18,11 @@ class CarController extends Controller
 
     public function show($id)
     {
-        $cars = Car::findOrFail($id);
-        $findcars = Car::latest()->take(4)->get();
+        $announcementcars = Announcement::latest()->take(4)->get();
 
         $announcement = Announcement::findOrFail($id);
 
-        return view('car-detaills', compact('cars', 'announcement', 'findcars'));
+        return view('car-detaills', compact('announcement', 'announcementcars'));
     }
 
     public function filterCar(Request $request)
