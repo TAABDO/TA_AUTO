@@ -174,7 +174,7 @@
         </ul>
     </div>  --}}
 
-    <div class="flex flex-row bg-gray-800">
+      <div class="flex flex-row bg-gray-800">
         <!-- Sidebar -->
         <div class="fixed left-0 top-0 w-64 h-full bg-[#f8f4f3] p-4 z-50 sidebar-menu transition-transform">
             <a href="#" class="flex items-center pb-4 border-b border-b-gray-800">
@@ -239,7 +239,7 @@
                 <hr>
                 <hr>
                 <li>
-                    <a href="{{ route('profile.index') }}"
+                    <a href="{{ route('AdminProfile.index') }}"
                         class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                         <i class="fa-solid fa-circle-user"></i>
                         <span class="flex-1 ms-3 whitespace-nowrap hover:">Profile</span>
@@ -253,7 +253,7 @@
                     </a>
                 </li>
             </ul>
-        </div>
+      </div>
         <!-- Content -->
 
         <div class="py-10 ml-20 sm:py-10 md:py-12 lg:py-20 my-auto flex-grow dark:bg-gray-100">
@@ -265,9 +265,9 @@
                             class="text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-gray-800">
                             Profile
                         </h1>
-                        <h2 class="text-gray-500 text-sm mb-4 dark:text-gray-400">Update Profile</h2>
+                        <h2 class="text-gray-500 text-sm mb-4 dark:text-gray-400">Admin Profile</h2>
 
-                        <form action="{{ route('profile.update', $user->id) }}" method="POST"
+                        <form action="{{ route('AdminProfile.update', $user->id) }}" method="POST"
                             class="md:w-4/4 pt-4 md:pt-0" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')

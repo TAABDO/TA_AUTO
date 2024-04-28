@@ -78,7 +78,7 @@
             <hr>
             <li>
 
-                <a href="{{ route('profile.index') }}"
+                <a href="{{ route('AdminProfile.index') }}"
                     class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="fa-solid fa-user"></i>
                     <span class="flex-1 ms-3 whitespace-nowrap hover:">Profile</span>
@@ -483,7 +483,8 @@
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $brand->name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <img src="{{ $brand->getFirstMediaUrl('brands_logo') }}" alt="Brand Logo"
-                                                class="h-auto w-12">
+                                                class="h-auto w-16">
+                                                dd()
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <button

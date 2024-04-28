@@ -39,10 +39,8 @@ class AuthController extends Controller
         $save = $user->save();
 
         if ($save) {
-            $user->roles()->attach([3]);
-            event(new Registered($user));
-
-            return redirect()->route('login')->with('success', 'User created successfully');
+            $request->session()->put('user_id', $user->id);
+            return view('auth.shoseRole');
         } else {
             return back()->with('fail', 'Something went wrong');
         }
@@ -83,6 +81,30 @@ class AuthController extends Controller
 
         return redirect()->route('login');
     }
+    // public function assignRol($role)
+    // {
+    //     $user = Auth::user();
+    //     $user->roles()->sync($role);
+
+    //     return redirect()->route('home');
+    // }
+
+    public function assignRole($role){
+        $user = User::find(session('user_id'));
+        if(!$user){
+            return redirect()->route('login')->with('error', 'User not found.');
+        }
+        if($user->roles()->count() > 0){
+            return redirect()->back()->with('error', 'User already has a role.');
+        }
+
+        $user->roles()->attach($role);
+
+
+        session()->forget('user_id');
+        return redirect(route('login'));
+    }
+
 
 
 }

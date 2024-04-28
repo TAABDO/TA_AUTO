@@ -14,7 +14,7 @@
                 <h1 id="typewriter" class="text-4xl font-bold"></h1>
             </div>
             <div>
-                <a href="#" title="Get quote now"
+                <a href="{{ route('car.index') }}" title="Get quote now"
                     class="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                     role="button">Get it now
                 </a>
@@ -26,27 +26,28 @@
 
 <section class="car spad bg-gray-100 pt-[10em] flex flex-col justify-center">
 
-    <div class="text-center">
+    <div id="best" style="visibility: hidden"  class="text-center">
         <div class="section-title">
             <span class="text-red-500 font-semibold">Best Vehicle Offers</span>
             <h2 class="text-3xl font-bold text-gray-800">Best Vehicle Offers</h2>
         </div>
     </div>
 
-    <div class="flex flex-wrap justify-center sm:justify-center md:justify-center lg:justify-center gap-10 pt-10 p-10">
+    <div  id="announce" style="visibility: hidden" class="flex flex-wrap justify-center sm:justify-center md:justify-center lg:justify-center gap-10 pt-10 p-10">
         @foreach ($announcements as $announcement)
             <div class="w-full sm:w-auto md:w-auto lg:w-auto">
                 <div
-                    class="bg-white rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+                class="bg-white rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
                     <div class="relative">
                         <div class="car__item__pic__slider owl-carousel">
                             {{--  <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">  --}}
-                            <img src="{{ $announcement->getFirstMediaUrl('images') }}" class="w-full h-44"" alt="Car 1">
+                            <img src="{{ $announcement->getFirstMediaUrl('images') }}" class="w-full h-44"
+                                alt="Car 1">
                         </div>
-                            <span
-                                class="car-option sale absolute top-0 right-0 bg-red-500 text-white py-1 px-2 rounded-bl-lg">
-                                For {{ $announcement->type }}
-                            </span>
+                        <span
+                            class="car-option sale absolute top-0 right-0 bg-red-500 text-white py-1 px-2 rounded-bl-lg">
+                            For {{ $announcement->type }}
+                        </span>
                     </div>
                     <div class="p-4">
                         <div class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">
@@ -61,20 +62,22 @@
                             <li><span>{{ $announcement->car->engine_capacity }}</span> hp |</li>
                         </ul>
                     </div>
-                        <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
-                            <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">
-                                {{ $announcement->situation }}
+                    <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
+                        <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">
+                            {{ $announcement->situation }}
+                        </h6>
+                        @if($announcement->type === 'rentel')
+                            <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span class="text-sm">/Day</span>
                             </h6>
-                            <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span
-                                    class="text-sm">/Month</span>
+                        @else
+                            <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span class="text-sm"></span>
                             </h6>
-                        </div>
+                        @endif
 
-                    <div class="p-2">
-                        <a href="#" title="More"
-                            class="block w-full py-2 text-center text-white bg-gray-900 font-bold rounded-b-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
-                            More
-                        </a>
+                    </div>
+                    <div class="p-4">
+                        <a href="{{ route('car.details', $announcement->id) }}"
+                            class="text-white bg-blue-700 w-10 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Details</a>
                     </div>
                 </div>
             </div>
@@ -270,14 +273,17 @@
     </div>
     <div class="grid grid-cols-1 pt-5 p-7 md:grid-cols-2 lg:grid-cols-4 gap-6">
         @foreach ($blogs as $blog)
-            <div class="bg-white border border-gray-200 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
-                <img class="rounded-t-lg w-full h-40" src="{{ $blog->getFirstMediaUrl('Blog_Image') }}" alt="">
+            <div
+                class="bg-white border border-gray-200 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+                <img class="rounded-t-lg w-full h-40" src="{{ $blog->getFirstMediaUrl('Blog_Image') }}"
+                    alt="">
                 <div class="p-5">
                     <ul class="flex flex-row justify-between text-gray-600 text-sm mb-3">
                         <li>By {{ $blog->user->fullname }}</li>
                         <li>{{ $blog->created_at }}</li>
                     </ul>
-                    <a href="{{ route('blogs.details', $blog->id) }}" class="block text-lg font-bold text-gray-900 hover:text-blue-700 mb-2">
+                    <a href="{{ route('blogs.details', $blog->id) }}"
+                        class="block text-lg font-bold text-gray-900 hover:text-blue-700 mb-2">
                         {{ $blog->title }}
                     </a>
                     <p class="text-gray-700 mb-4">
@@ -325,8 +331,8 @@
 <!-- Footer -->
 
 <!-- Js Plugins -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script>
     $(document).ready(function() {
         $('#filterButton').click(function(e) {
             e.preventDefault();
@@ -346,10 +352,10 @@
             });
         });
     });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+ </script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
-<script>
+ <script>
     const wordds = ["Hello, World! Welcome to my website!", "Drive the Future with TA-AUTO: ",
         " Your Trusted Car Marketplace.", "TA-AUTO: Where Every Mile Tells a Story.", " Start Your Journey Today."
     ];
@@ -381,4 +387,25 @@
     }
 
     type();
+</script>
+
+
+ <script>
+    new Promise((resolve,reject)=>
+    {
+
+        setTimeout(function(){
+            document.getElementById('best').style.visibility = "visible";
+            resolve();
+        },1000)
+
+
+    }).then(()=>
+    {
+        setTimeout(function(){
+            document.getElementById('announce').style.visibility = "visible";
+        },1000)
+
+
+    })
 </script>
