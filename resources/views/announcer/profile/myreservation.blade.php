@@ -131,10 +131,12 @@
             </ul>
         </div>
     </aside>
-    <section class="flex flex-col md:flex-row justify-center items-center">
+    {{--  <section id="reservation" style="visibility: visible"
+        class="flex flex-wrap md:flex-row justify-center items-center">
         @foreach ($reservations as $reservation)
             <div class="flex flex-col md:flex-row bg-white shadow-lg rounded-lg m-4 w-full md:max-w-2xl">
-                <div class="w-full md:w-1/2 bg-cover" style="background-image: url('{{ $reservation->announcement->getFirstMediaUrl('images') }}')">
+                <div class="w-full md:w-1/2 bg-cover"
+                    style="background-image: url('{{ $reservation->announcement->getFirstMediaUrl('images') }}')">
                 </div>
                 <div class="w-full md:w-1/2 p-4">
                     <h1 class="text-gray-900 font-bold text-2xl mb-2">{{ $reservation->announcement->car->model }}</h1>
@@ -149,17 +151,23 @@
                     <p class="text-gray-600 text-sm mb-2">Pickup-L: {{ $reservation->pickupLocation }}</p>
                     <p class="text-gray-600 text-sm mb-2">Dropoff-L: {{ $reservation->dropofLocation }}</p>
                     <div class="mt-4">
-                        <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mr-2">
+
+                        <form action="" method="">
+                            @csrf
+                            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mr-2">
                             Cancel Reservation
-                        </button>
-                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                            </button>
+                        </form>
+
+                        <button
+                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
                             Download Reservation
                         </button>
                     </div>
                 </div>
             </div>
         @endforeach
-    </section>
+    </section>  --}}
 
     <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
         <div class="w-full mx-auto max-w-screen-xl p-4 pl-44 md:flex md:items-center md:justify-between">
@@ -186,6 +194,8 @@
 
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
+
 </body>
 
 </html>

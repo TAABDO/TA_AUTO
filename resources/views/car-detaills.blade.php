@@ -1,20 +1,8 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-{{--  @extends('includes.head')  --}}
-
 <head>
-    {{--  <meta charset="UTF-8">
-    <meta name="description" content="HVAC Template">
-    <meta name="keywords" content="HVAC, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Car-Details</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">  --}}
+
     @extends('includes.head')
 
 </head>
@@ -89,76 +77,91 @@
         </div>
 
     </section>  --}}
-    <section class="flex flex-col justify-center pt-40 bg-white">
-        <div class="flex flex-col justify-evenly items-center">
+    <section class="flex flex-col justify-center items-center pt-28 md:pt-40 bg-white">
+        <div class="flex flex-col justify-evenly items-center px-4 md:px-0">
 
             <div
-                class="flex flex-col lg:flex-row justify-center items-center lg:items-start bg-white rounded-lg shadow-lg overflow-hidden lg:overflow-visible">
-                <div class="lg:w-1/2">
-                    <img class="w-full h-auto border rounded-lg shadow-lg transition-transform transform hover:scale-105"
+                class="flex flex-col md:flex-row justify-center items-center md:justify-center bg-white rounded-lg shadow-2xl overflow-hidden md:overflow-visible m-4 md:max-w-6xl">
+                <div class="md:w-1/2">
+                    <img class="w-full h-auto border rounded-lg shadow-lg transition-transform transform hover:scale-110"
                         src="{{ $announcement->getFirstMediaUrl('images') }}" alt="Car Images">
                 </div>
-                <div class="p-8 lg:px-12 lg:w-1/2">
-                    <h2 class="text-3xl lg:text-4xl font-semibold mb-4 text-gray-800">{{ $announcement->car->model }}
-                    </h2>
-                    <div class="flex flex-col space-y-4">
-                        <div class="flex flex-wrap items-center gap-8">
-                            <div>
-                                <span
-                                    class="text-lg lg:text-xl font-bold text-gray-700 dark:text-gray-700">Price:</span>
-                                <span
-                                    class="text-lg lg:text-xl text-gray-600 dark:text-gray-700">${{ $announcement->price }}</span>
-                            </div>
-                            <div>
-                                <span class="text-lg lg:text-xl font-bold text-gray-700 dark:text-gray-700">Year:</span>
-                                <span
-                                    class="text-lg lg:text-xl text-gray-600 dark:text-gray-700">{{ $announcement->car->year }}</span>
-                            </div>
+                <div class="flex flex-wrap justify-center">
+                    @foreach ($announcement->getMedia('images') as $image)
+                        <img class="w-40 h-36 object-cover rounded-lg shadow-2xl transition-transform transform hover:scale-110 m-2"
+                            src="{{ $image->getUrl() }}" alt="Car Image">
+                    @endforeach
+                </div>
+
+            </div>
+            @session('success')
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Success!</strong>
+                    <span class="block sm:inline">{{ $value }}</span>
+                </div>
+            @endsession
+
+            @session('error')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Error!</strong>
+                    <span class="block sm:inline">{{ $value }}</span>
+                </div>
+            @endsession
+
+            <div
+                class="p-4 md:p-8 md:w-1/2 bg-gray-100 bg-white rounded-lg shadow-2xl overflow-hidden md:overflow-visible">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800">{{ $announcement->car->model }}</h2>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex flex-wrap items-center gap-4 md:gap-8">
+                        <div>
+                            <span class="text-lg md:text-xl font-bold text-gray-700">Price:</span>
+                            <span class="text-lg md:text-xl text-gray-600">${{ $announcement->price }}</span>
                         </div>
                         <div>
-                            <span
-                                class="text-lg lg:text-xl font-bold text-gray-700 dark:text-gray-700">Availability:</span>
-                            <span
-                                class="text-lg lg:text-xl text-gray-600 dark:text-gray-700 bg-green-300 rounded-lg p-1">
-                                {{ $announcement->situation }}
-                            </span>
-                        </div>
-                        <div class="flex flex-wrap items-center gap-8">
-                            <div>
-                                <span
-                                    class="text-lg lg:text-xl font-bold text-gray-700 dark:text-gray-700">Color:</span>
-                                <span
-                                    class="text-lg lg:text-xl text-gray-600 dark:text-gray-700">{{ $announcement->car->color }}</span>
-                            </div>
-                            <div>
-                                <span class="text-lg lg:text-xl font-bold text-gray-700 dark:text-gray-700">City:</span>
-                                <span
-                                    class="text-lg lg:text-xl text-gray-600 dark:text-gray-700 rounded-lg p-1">{{ $announcement->city }}</span>
-                            </div>
+                            <span class="text-lg md:text-xl font-bold text-gray-700">Model Year:</span>
+                            <span class="text-lg md:text-xl text-gray-600">{{ $announcement->car->year }}</span>
                         </div>
                     </div>
-                    <div class="mt-6">
-                        <span class="text-lg font-bold text-gray-700 dark:text-gray-700">Contact Info:</span>
-                        @if ($announcement->type == 'rentel')
-                            <button id="openModal" class="btn-reserve mt-2 lg:mt-4">Reserve Now <i
-                                    class="fa-solid fa-car-side ml-2"></i></button>
-                        @else
-                            <button id="" class="mt-2 lg:mt-4">
-                                <a href="" class="btn-call">Call The Owner <i
-                                        class="fa-solid fa-car-side ml-2"></i></a>
-                            </button>
-                        @endif
-                        <a href="" class="btn-message mt-2 lg:mt-4">Send Message <i
-                                class="fa-solid fa-car-side ml-2"></i></a>
+                    <div>
+                        <span class="text-lg md:text-xl font-bold text-gray-700">Availability:</span>
+                        <span class="text-lg md:text-xl text-gray-600 bg-green-300 rounded-lg p-1">
+                            {{ $announcement->situation }}
+                        </span>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-4 md:gap-8">
+                        <div>
+                            <span class="text-lg md:text-xl font-bold text-gray-700">Color:</span>
+                            <span class="text-lg md:text-xl text-gray-600">{{ $announcement->car->color }}</span>
+                        </div>
+                        <div>
+                            <span class="text-lg md:text-xl font-bold text-gray-700">City:</span>
+                            <span
+                                class="text-lg md:text-xl text-gray-600 rounded-lg p-1">{{ $announcement->city }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="flex flex-wrap w-50 gap-2x justify-center mt-4">
-                @foreach ($announcement->getMedia('images') as $image)
-                    <img class="w-44 h-40 object-cover rounded-lg shadow-lg transition-transform transform hover:scale-105"
-                        src="{{ $image->getUrl() }}"alt="Car Image">
-                @endforeach
+                <div class="mt-4">
+                    @auth
+                    <span class="text-lg font-bold text-gray-700">Contact Info:</span>
+                    @if ($announcement->type == 'rentel')
+                        <button id="openModal"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center mt-2 md:mt-4">
+                            Reserve Now <i class="fa-solid fa-car-side ml-2"></i>
+                        </button>
+                    @else
+                        <button id="" class="mt-2 md:mt-4">
+                            <a href=""
+                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                                Call The Owner <i class="fa-solid fa-car-side ml-2"></i>
+                            </a>
+                        </button>
+                    @endif
+                    <a href=""
+                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-2 md:mt-4">
+                        Send Message <i class="fa-solid fa-car-side ml-2"></i>
+                    </a>
+                    @endauth
+                </div>
             </div>
 
         </div>
@@ -180,9 +183,6 @@
             <!-- Add your car details here -->
         </div>
     </div>
-    </div>
-    </header>
-
     <section class="car spad bg-gray-100 pt-[10em] flex flex-col justify-center">
 
         <div class="text-center">
@@ -411,7 +411,7 @@
     </div>
 
 
-    
+
     <script>
         // Get modal and trigger button elements
         const modal = document.getElementById('modal');
