@@ -14,9 +14,9 @@ class AnnouncementController extends Controller
     public function index()
     {
         // $announcements = Announcement::with('cars')->paginate(10); // 10 is the number of items per page
-        $announcements = Announcement::paginate(1);
+        // $announcements = Announcement::paginate(1);
         // $cars = Car::whereHas('announcement')->latest()->take(4)->get();
-        // $announcements = Announcement::all();
+        $announcements = Announcement::all();
         return view('car', compact('announcements'));
     }
 

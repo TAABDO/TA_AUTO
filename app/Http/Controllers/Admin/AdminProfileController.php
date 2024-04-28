@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminProfileController extends Controller
 {
@@ -11,7 +12,7 @@ class AdminProfileController extends Controller
     {
         $user = Auth::user();
 
-        return view('announcer.profile.profileUser', compact('user'));
+        return view('Admin.profile.adminProfile', compact('user'));
     }
 
     public function Show($id)
@@ -57,7 +58,7 @@ class AdminProfileController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('profile.index', compact('user'));
+        return redirect()->route('Profile.index', compact('user'));
     }
 
     public function myreservations()

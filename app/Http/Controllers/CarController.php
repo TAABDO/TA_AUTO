@@ -11,9 +11,9 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::all();
-        $announcements = Announcement::all();
+        $announcements = Announcement::where('car_id', '!=', null)->get;
 
-        return view('car', compact('cars', 'announcements'));
+        return view('car', compact('announcements'));
     }
 
     public function show($id)
@@ -50,9 +50,9 @@ class CarController extends Controller
             $query->where('model', 'LIKE', '%'.$model.'%');
         }
 
-        // if ($fuel_type !== null) {
-        //     $query->where('fuel_type', $fuel_type);
-        // }
+        if ($fuel_type !== null) {
+            $query->where('fuel_type', $fuel_type);
+        }
 
         if ($price !== null) {
             $query->where('price', '<=', $price);

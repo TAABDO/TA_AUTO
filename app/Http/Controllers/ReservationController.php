@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Announcement;
 use App\Models\Reservation;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
     public function index()
     {
         // Get the authenticated user
-        $user = auth()->user();
+        // $user = auth()->user();
 
-        // Get the reservations that belong to the user and load the announcement.car relationship
-        $reservations = $user->reservations()->with('announcement_id')->get();
+        // // Get the reservations that belong to the user and load the announcement.car relationship
+        // $reservations = $user->reservations()->with('announcement_id')->get();
 
-        return view('announcer.profile.myreservation', compact('reservations'));
+        return view('announcer.profile');
     }
 
     // public function create()
@@ -77,7 +78,7 @@ class ReservationController extends Controller
 public function store(Request $request)
 {
 
-    $validated = $request->validate([
+   $validated = $request->validate([
         'identification_card' => 'required',
         'licence' => 'required',
         'licenceDate' => 'required|date',
@@ -87,37 +88,25 @@ public function store(Request $request)
         'dropofLocation' => 'required',
         'announcement_id' => 'required|exists:announcements,id',
     ]);
-    //
 
-    $user_id = auth()->id();
+    $announcement = Announcement::where('situation','available')->get();
 
-    if ($user_id === null) {
-        return redirect('login');
+    if ($announcement) {
+        return redirect()->back()->with('error', 'The specified announcement does not exist');
     }
-    // Check if the user has already made a reservation for this car
-    // dd($request->announcement_id);
-    // $existingReservation = Reservation::where('announcement_id', $request->announcement_id)
-    //     ->where('pickupDate', $validated['announcement_id'])
-    //     ->first();
 
         $reservations = Reservation::where('announcement_id', $request->announcement_id)
-        ->where('status', 'confirmed')
-        ->where(function ($query) use ($request) {
-            $query->where('pickupDate', '<=', $request->pickupDate)
-                  ->where('dropofDate', '>=', $request->dropofDate)
-                  ->orWhere('pickupDate', '<=', $request->pickupDate)
-                  ->where('dropofDate', '>=', $request->dropofDate);
-        })->get();
+        ->where('dropofDate', '>', $request->pickupDate)
+        ->where('pickupDate', '<', $request->dropofDate)
+        ->count();
 
-
-
-    if ($reservations) {
+    if ($reservations > 0) {
         return redirect()->back()->with('error', 'You have already made a reservation for this car');
     }
 
     // Create a new reservation for the authenticated user
 
-    $reservation = Reservation::create(array_merge($validated, ['user_id' => $user_id]));
+    $reservation = Reservation::create(array_merge($request->all(), ['user_id' => Auth::id()]));
 
     if (!$reservation) {
         return redirect()->back()->with('error', 'Reservation not created');
@@ -127,3 +116,4 @@ public function store(Request $request)
 }
 
 }
+
