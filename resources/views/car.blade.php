@@ -27,8 +27,8 @@
 
     {{--  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ Filter Section ========================  --}}
 
-    <section class="w-full overflow-hidden mt-10">
-        <div class="absolute top-[60%] left-[5%] car spad bg-gray-800 p-10 flex flex-wrap justify-center z-10 rounded-[20px] shadow-lg">
+    <section class="w-full overflow-hidden mt-5">
+        <div class="absolute top-[50%] left-[5%] car spad bg-gray-800 p-10 flex flex-wrap justify-center z-10 rounded-[20px] shadow-2xl">
             <div class="container mx-auto flex flex-col justify-center">
                 <div class="text-center">
                     <div class="section-title">
@@ -40,21 +40,21 @@
                     @method('GET')
                     <div class="select-list mb-4 flex flex-col gap-3">
                         <div class="select-list-item">
-                            <p class="text-gray-500">Select Year</p>
+                            <p class="text-gray-500">Select Model Year</p>
                             <select name="year" class="w-full border rounded p-2 mb-2">
-                                <option data-display="">Select Year</option>
+                                <option data-display="">Select Model Year</option>
                                 @foreach ($announcements as $announcement )
                                 <option class="text-gray-500" value="{{ $announcement->car->year }}">{{ $announcement->car->year }}</option>
                                 @endforeach
-
                             </select>
                         </div>
                         <div class="select-list-item">
                             <p class="text-gray-500">Select Transmission</p>
                             <select name="transmission" class="w-full border rounded p-2 mb-2">
+                                <option data-display="">Select Transmission</option>
                                 @foreach ($announcements as $announcement)
-                                    <option class="text-gray-500" value="{{ $announcement->transmission }}">
-                                        {{ $announcement->transmission }}
+                                    <option class="text-gray-500" value="{{ $announcement->car->transmission }}">
+                                        {{ $announcement->car->transmission }}
                                     </option>
                                 @endforeach
                             </select>
@@ -62,18 +62,47 @@
                         <div class="select-list-item">
                             <p class="text-gray-500">Select Model</p>
                             <select name="model" class="w-full border rounded p-2 mb-2">
+                                <option data-display="">Select Model</option>
                                 @foreach ($announcements as $announcement)
-                                    <option class="text-gray-500" value="{{ $announcement->model }}">
-                                        {{ $announcement->model }}
+                                    <option class="text-gray-500" value="{{ $announcement->car->model }}">
+                                        {{ $announcement->car->model }}
                                     </option>
                                 @endforeach
-
+                            </select>
+                        </div>
+                        <div class="select-list-item">
+                            <p class="text-gray-500">Select Color</p>
+                            <select name="transmission" class="w-full border rounded p-2 mb-2">
+                                <option data-display="">Select Color</option>
+                                @foreach ($announcements as $announcement)
+                                    <option class="text-gray-500" value="{{ $announcement->car->color }}">
+                                        {{ $announcement->car->color }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="select-list-item">
+                            <p class="text-gray-500">Select Fuel_Type</p>
+                            <select name="model" class="w-full border rounded p-2 mb-2">
+                                <option data-display="">Select Fuel_Type</option>
+                                @foreach ($announcements as $announcement)
+                                    <option class="text-gray-500" value="{{ $announcement->car->fuel_type }}">
+                                        {{ $announcement->car->fuel_type }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="select-list-item">
                             <p class="text-gray-500">Price</p>
-                            <input type="text" class ="w-32 border rounded p-2 mb-2" name="price" id="price"
-                                value="" placeholder="8000 $">
+
+                                <div class="mb-4">
+                                    <input type="range" id="price-range" class="w-full accent-indigo-600" min="0" max="1000" value="500" oninput="updatePrice(this.value)">
+                                  </div>
+                                  <div class="flex justify-between text-gray-500">
+                                    <span id="minPrice">$0</span>
+                                    <span id="minPrice">$500</span>
+                                    <span id="maxPrice">$1000</span>
+                                  </div>
                         </div>
                         <div class="select-list-item">
                             <button type="submit"
@@ -93,16 +122,24 @@
 
     {{--  ===================================== cards =============  --}}
     <div class="flex flex-col">
-        <div class="flex flex-wrap justify-end sm:justify-center gap-10 pl-[20rem] pt-[5rem] pb-[5rem] ">
+        <div class="flex flex-col md:flex-row gap-3 pl-[8rem] pt-[5rem]">
+            <form action="{{ route('type.filterByType') }}" method="GET" class="flex flex-col md:flex-row gap-3 pl-[20rem]">
+                @method('GET')
+                <select  id="filterType" name="type" class="w-full h-10 border-2 border-gray-800 focus:outline-none focus:border-gray-800 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
+                    <option value="All" selected="">All</option>
+                    <option value="rentel">Rentel</option>
+                    <option value="sale">Sale</option>
+                </select>
+            </form>
+        </div>
+        <div class="flex flex-wrap justify-end sm:justify-center gap-10 pl-[20rem] pt-[3rem] pb-[5rem] ">
             @foreach ($announcements as $announcement)
                 <div class="w-full sm:w-auto md:w-auto lg:w-auto">
                     <div class="bg-white rounded-lg overflow-hidden shadow-lg">
                         <div class="bg-white rounded-lg overflow-hidden shadow-lg">
                             <div class="relative">
                                 <div class="car__item__pic__slider owl-carousel">
-                                    {{--  <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">  --}}
-                                    <img src="{{ $announcement->getFirstMediaUrl('images') }}" class="w-full h-44"
-                                        alt="Car 1">
+                                    <img src="{{ $announcement->getFirstMediaUrl('images') }}" class="w-full h-44" alt="Car 1">
                                 </div>
                                 <span id="car-option" style="background-color: rgb(128, 202, 158)" class="car-option absolute top-0 right-0 text-white py-1 px-2 rounded-bl-lg">
                                     For {{ $announcement->type }}
@@ -113,7 +150,6 @@
                                     <span>
                                         {{ $announcement->car->year }}
                                     </span>
-
                                 </div>
                                 <h5 class="text-xl font-semibold mt-2"><a href="#"
                                         class="text-gray-800 hover:text-red-500"> {{ $announcement->car->model }}
@@ -179,6 +215,27 @@
     </script>
 
     <script>
+        $(document).ready(function() {
+            $('#filterType').change(function() {
+                var filterType = $(this).val();
+
+                $.ajax({
+                    url: '/filterByType',
+                    method: 'GET',
+                    data: {
+                        type: filterType
+                    },
+                    success: function(data) {
+                        $('#carList').html(data);
+                    },
+
+                });
+            });
+        });
+    </script>
+
+{{--  =================== color for rentel and for sale =====================  --}}
+    <script>
            if(document.getElementById('car-option').innerText === 'For sale'){
             document.querySelector('.car-option').style.background = 'red';
 
@@ -186,6 +243,12 @@
             document.querySelector('.car-option').style.background = 'rgb(92, 249, 155)';
            }
     </script>
+{{--  =================== price ====  --}}
+    <script>
+        function updatePrice(value) {
+          document.getElementById("minPrice").textContent = "$" + value;
+        }
+      </script>
 </body>
 
 </html>

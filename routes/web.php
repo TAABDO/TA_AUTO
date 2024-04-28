@@ -40,7 +40,7 @@ Route::middleware('Admin')->group(function () {
     Route::put('Blog/{blog}', [BlogStatusController::class, 'accepteblog'])->name('blog.accepteblog');
     Route::resource('AdminProfile',AdminProfileController::class);
     Route::resource('brands',BrandController::class);
-    
+
 });
 
 // ==================================== Home ============================
@@ -73,6 +73,7 @@ Route::delete('Blog/{blog}', [BlogController::class, 'destroy'])->name('blog.des
 
 
 Route::resource('announce',AnnouncementController::class);
+Route::get('/filterByType',[AnnouncementController::class,'filterByType'])->name('type.filterByType');
 
 
 // ========================================== Reservations ========================
@@ -93,14 +94,13 @@ Route::get('contact',[ContactController::class,'contact'])->name('contact.contac
 
 
 
-
-
 // ================================== cars ========================
 
 
 Route::get('car',[CarController::class,'index'])->name('car.index');
 Route::get('filtercar',[CarController::class,'filterCar'])->name('car.filterCar');
 Route::get('car/{car}',[CarController::class,'show'])->name('car.details');
+
 
 // ==================================== system Authentication ============
 

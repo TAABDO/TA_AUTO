@@ -27,7 +27,7 @@
                         seconds = seconds < 10 ? '0' + seconds : seconds;
                         var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
                         document.getElementById('timezone').innerHTML = strTime;
-                        setInterval('time()', 1000);
+
                     </script>
                 </div>
             </div>

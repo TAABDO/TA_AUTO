@@ -11,7 +11,7 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::all();
-        $announcements = Announcement::where('car_id', '!=', null)->get;
+        $announcements = Announcement::where('car_id', '!=', null)->get();
 
         return view('car', compact('announcements'));
     }
@@ -33,6 +33,7 @@ class CarController extends Controller
         $model = $request->input('model');
         $price = $request->input('price');
         $fuel_type = $request->input('fuel_type');
+        $color = $request->input('color');
 
         // Start building the query
         $query = Car::query();
@@ -53,6 +54,9 @@ class CarController extends Controller
         if ($fuel_type !== null) {
             $query->where('fuel_type', $fuel_type);
         }
+        if ($color !== null) {
+            $query->where('color', $color);
+        }
 
         if ($price !== null) {
             $query->where('price', '<=', $price);
@@ -64,4 +68,26 @@ class CarController extends Controller
         // Return the filtered results as a view
         return view('car', ['cars' => $cars]);
     }
+
+    
+
+    // public function filterByType(Request $request)
+    // {
+    //     $type = $request->input('type');
+    //     $search = $request->input('search');
+
+    //     $query = Announcement::query();
+
+    //     if ($type !== 'All') {
+    //         $query->where('type', $type);
+    //     }
+
+    //     if ($search) {
+    //         $query->where('name', 'like', '%'.$search.'%');
+    //     }
+
+    //     $announcements = $query->get();
+
+    //     return view('car', ['announcements' => $announcements]);
+    // }
 }

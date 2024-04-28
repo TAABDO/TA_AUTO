@@ -28,45 +28,6 @@ class AnnouncementController extends Controller
         return view('announcer.annonce.create', compact('types', 'brands'));
     }
 
-    // public function store(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'title' => 'sometimes|string',
-    //         'description' => 'sometimes|string',
-    //         'city' => 'sometimes|string',
-    //         'price' => 'sometimes',
-    //         'type' => 'sometimes',
-    //         'color' => 'sometimes',
-    //         'model' => 'sometimes',
-    //         'seat' => 'sometimes',
-    //         'condition' => 'sometimes',
-    //         'km' => 'sometimes',
-    //         'year' => 'sometimes',
-    //         'transmission' => 'sometimes',
-    //         'fuel_type' => 'sometimes',
-    //         'engine_capacity' => 'sometimes',
-    //         'brand_id' => 'sometimes',
-    //         'images.*' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
-    //     ]);
-
-    //     $announcement = auth()->user()->announcements()->create($validated);
-    //     if ($request->hasFile('images')) {
-    //         foreach ($request->file('images') as $image) {
-    //             $announcement->addMedia($image)->toMediaCollection('images');
-    //         }
-    //     }
-
-    //     // dd($request->all());
-    //     $car = new Car($validated);
-    //     $car->announcement()->associate($announcement);
-    //     $car->save();
-
-    //     return redirect()->route('announce.index');
-    // }
-
-
-
-
 public function store(Request $request)
 {
     if (!auth()->check()) {
@@ -92,17 +53,14 @@ public function store(Request $request)
     ]);
 
     $car = Car::create($validated);
-
     // $announcement = $car->announcement()->create($validated);
     $announcement = $car->announcement()->create(array_merge($validated, ['user_id' => auth()->id()]));
-
 
     if ($request->hasFile('images')) {
         foreach ($request->file('images') as $image) {
             $announcement->addMedia($image)->toMediaCollection('images');
         }
     }
-
         return redirect()->route('announce.index');
 }
 
@@ -156,5 +114,44 @@ public function store(Request $request)
 
         return redirect()->route('dashboard');
     }
+
+//     public function filterByType(Request $request)
+// {
+//     $type = $request->get('type');
+//     $announcements = Announcement::where('type', $type)->get();
+
+//     return view('car', compact('announcements'));
+// }
+
+public function filterByType(Request $request)
+    {
+        $announcementTpye = $request->input('type');
+        $query = Announcement::query();
+
+        if ($announcementTpye !== null) {
+            $query->where('type', $announcementTpye);
+        }
+        $announcements = $query->get();
+        return view('car', compact('announcements'));
+    }
+
+
+
+
+// public function filterByType(Request $request)
+    // {
+    //     $type = $request->input('type');
+
+
+    //     $query = Announcement::query();
+
+    //     if ($type !== 'All') {
+    //         $query->where('type', $type);
+    //     }
+
+    //     $announcements = $query->get();
+
+    //     return view('car', ['announcements' => $announcements]);
+    // }
 
 }
