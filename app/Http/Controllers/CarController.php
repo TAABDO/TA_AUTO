@@ -10,8 +10,7 @@ class CarController extends Controller
 {
     public function index()
     {
-        $cars = Car::all();
-        $announcements = Announcement::where('car_id', '!=', null)->get();
+        $announcements = Announcement::all();
 
         return view('car', compact('announcements'));
     }
@@ -25,69 +24,109 @@ class CarController extends Controller
         return view('car-detaills', compact('announcement', 'announcementcars'));
     }
 
-    public function filterCar(Request $request)
+    public function filterByType(Request $request)
     {
-        // Get filter criteria from request
-        $year = $request->input('year');
-        $transmission = $request->input('transmission');
-        $model = $request->input('model');
-        $price = $request->input('price');
-        $fuel_type = $request->input('fuel_type');
-        $color = $request->input('color');
+        $announcementTpye = $request->input('type');
+        $query = Announcement::query();
 
-        // Start building the query
-        $query = Car::query();
-
-        // Add conditions based on filter criteria
-        if ($year !== null) {
-            $query->where('year', $year);
+        if ($announcementTpye !== null) {
+            $query->where('type', $announcementTpye);
         }
+        $announcements = $query->get();
 
-        if ($transmission !== null) {
-            $query->where('transmission', $transmission);
-        }
-
-        if ($model !== null) {
-            $query->where('model', 'LIKE', '%'.$model.'%');
-        }
-
-        if ($fuel_type !== null) {
-            $query->where('fuel_type', $fuel_type);
-        }
-        if ($color !== null) {
-            $query->where('color', $color);
-        }
-
-        if ($price !== null) {
-            $query->where('price', '<=', $price);
-        }
-
-        // Execute the query and get the results
-        $cars = $query->get();
-
-        // Return the filtered results as a view
-        return view('car', ['cars' => $cars]);
+        return view('car', compact('announcements'));
     }
 
-    
+    public function filterCar(Request $request)
+    {
+        // Get the filter parameters from the request
+        $year = $request->get('year');
+        $transmission = $request->get('transmission');
+        $model = $request->get('model');
+        $color = $request->get('color');
+        $fuel_type = $request->get('fuel_type');
+        $type = $request->get('type');
 
-    // public function filterByType(Request $request)
+        // Filter the announcements
+        $announcements = Announcement::query();
+        if($type){
+            $announcements->where('type',$type);
+        }
+        if ($year) {
+            $announcements->whereHas('car', function ($query) use ($year) {
+                $query->where('year', $year);
+            });
+        }
+
+        if ($transmission) {
+            $announcements->whereHas('car', function ($query) use ($transmission) {
+                $query->where('transmission', $transmission);
+            });
+        }
+
+        if ($model) {
+            $announcements->whereHas('car', function ($query) use ($model) {
+                $query->where('model', $model);
+            });
+        }
+
+        if ($color) {
+            $announcements->whereHas('car', function ($query) use ($color) {
+                $query->where('color', $color);
+            });
+        }
+
+        if ($fuel_type && ! empty($fuel_type)) {
+            $announcements->whereHas('car', function ($query) use ($fuel_type) {
+                $query->where('fuel_type', $fuel_type);
+            });
+        }
+
+        $announcements = $announcements->get();
+
+        // Return the filtered announcements as a view
+        return view('search', compact('announcements'));
+    }
+
+    // public function filterCar(Request $request)
     // {
-    //     $type = $request->input('type');
-    //     $search = $request->input('search');
+    //     // Start a query on the Announcement model
+    //     $announcements = Announcement::query();
 
-    //     $query = Announcement::query();
+    //     if ($request->year && ! empty($request->year)) {
 
-    //     if ($type !== 'All') {
-    //         $query->where('type', $type);
+    //         $announcements->whereHas('car', function ($query) use ($year) {
+    //             $query->where('year', $year);
+    //         });
+    //     }
+    //     if ($request->transmission && ! empty($request->transmission)) {
+    //         $announcements->whereHas('car', function ($query) use ($year) {
+    //             $query->where('year', $year);
+    //         });
+    //     }
+    //     if ($request->color && ! empty($request->color)) {
+    //         $announcements->whereHas('car', function ($query) use ($color) {
+    //             $query->where('color', $color);
+    //         });
+    //     }
+    //     if ($request->fuel_type && ! empty($request->fuel_type)) {
+    //         $announcements->whereHas('car', function ($query) use ($year) {
+    //             $query->where('year', $year);
+    //         });
+    //     }
+    //     if ($request->model && ! empty($request->model)) {
+    //         $announcements->whereHas('car', function ($query) use ($model) {
+    //             $query->where('model', $model);
+    //         });
+    //     }
+    //     if ($request->price && ! empty($request->price)) {
+    //         $announcements->where('price', '<=', $price);
     //     }
 
-    //     if ($search) {
-    //         $query->where('name', 'like', '%'.$search.'%');
-    //     }
+    //     // Execute the query
+    //     $announcements = $announcements->get();
 
-    //     $announcements = $query->get();
-
-    //     return view('car', ['announcements' => $announcements]);
+    //     // Return the filtered announcements as a view
+    //     return view('car', compact('announcements'));
     // }
 }

@@ -13,19 +13,15 @@ class AnnouncementController extends Controller
 {
     public function index()
     {
-        // $announcements = Announcement::with('cars')->paginate(10); // 10 is the number of items per page
-        // $announcements = Announcement::paginate(1);
-        // $cars = Car::whereHas('announcement')->latest()->take(4)->get();
         $announcements = Announcement::all();
         return view('car', compact('announcements'));
     }
 
     public function create()
     {
-        $types = ['rentel', 'sale'];
         $brands = Brand::all();
 
-        return view('announcer.annonce.create', compact('types', 'brands'));
+        return view('announcer.annonce.create', compact('brands'));
     }
 
 public function store(Request $request)
@@ -53,7 +49,6 @@ public function store(Request $request)
     ]);
 
     $car = Car::create($validated);
-    // $announcement = $car->announcement()->create($validated);
     $announcement = $car->announcement()->create(array_merge($validated, ['user_id' => auth()->id()]));
 
     if ($request->hasFile('images')) {
@@ -81,21 +76,21 @@ public function store(Request $request)
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            // 'title' => 'sometimes|string',
-            // 'description' => 'sometimes|string',
-            // 'price' => 'sometimes',
-            // 'type' => 'sometimes',
-            // 'color' => 'sometimes',
-            // 'model' => 'sometimes',
-            // 'seat' => 'sometimes',
-            // 'condition' => 'sometimes',
-            // 'km' => 'sometimes',
-            // 'year' => 'sometimes',
-            // 'transmission' => 'sometimes',
-            // 'fuel_type' => 'sometimes',
-            // 'engine_capacity' => 'sometimes',
-            // 'brand_id' => 'sometimes',
-            // 'images' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
+            'title' => 'sometimes|string',
+            'description' => 'sometimes|string',
+            'price' => 'sometimes',
+            'type' => 'sometimes',
+            'color' => 'sometimes',
+            'model' => 'sometimes',
+            'seat' => 'sometimes',
+            'condition' => 'sometimes',
+            'km' => 'sometimes',
+            'year' => 'sometimes',
+            'transmission' => 'sometimes',
+            'fuel_type' => 'sometimes',
+            'engine_capacity' => 'sometimes',
+            'brand_id' => 'sometimes',
+            'images' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $announcement = Announcement::findOrFail($id);
@@ -114,44 +109,5 @@ public function store(Request $request)
 
         return redirect()->route('dashboard');
     }
-
-//     public function filterByType(Request $request)
-// {
-//     $type = $request->get('type');
-//     $announcements = Announcement::where('type', $type)->get();
-
-//     return view('car', compact('announcements'));
-// }
-
-public function filterByType(Request $request)
-    {
-        $announcementTpye = $request->input('type');
-        $query = Announcement::query();
-
-        if ($announcementTpye !== null) {
-            $query->where('type', $announcementTpye);
-        }
-        $announcements = $query->get();
-        return view('car', compact('announcements'));
-    }
-
-
-
-
-// public function filterByType(Request $request)
-    // {
-    //     $type = $request->input('type');
-
-
-    //     $query = Announcement::query();
-
-    //     if ($type !== 'All') {
-    //         $query->where('type', $type);
-    //     }
-
-    //     $announcements = $query->get();
-
-    //     return view('car', ['announcements' => $announcements]);
-    // }
 
 }

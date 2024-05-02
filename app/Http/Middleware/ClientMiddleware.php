@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class ClientMiddleware
@@ -13,13 +14,13 @@ class ClientMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
+    // public function handle(Request $request, Closure $next): Response
+    // {
 
-        if(Auth::check() && Auth::user()->isClient())
-        {
-            return $next($request);
-        }
-        return view('home')->with('error', "You don't have client access.");
-    }
+    //     if(Auth::check() && Auth::user()->isClient())
+    //     {
+    //         return $next($request);
+    //     }
+    //     return view('welcome');
+    // }
 }

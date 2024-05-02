@@ -20,20 +20,23 @@ class AdminController extends Controller
     {
         $userCounts = User::count();
         $countblogs = Blog::count();
+        $blogs = Blog::where('blogStatus', 'pending')->get();
         $users = User::where('status', 'pending')->get();
         $brands = Brand::all();
-        $user=Auth::user();
+        $user = Auth::user();
         $carAnnounceCount = Announcement::count();
-        $blogs = Blog::where('blogStatus', 'pending')->get();
+        $announces = Announcement::where('announcestatus', 'pending')->get();
 
-        return view('admin.admin', compact('users','brands','userCounts','user','countblogs','carAnnounceCount','blogs'));
+
+        return view('admin.admin', compact('announces','users','brands','user','userCounts','countblogs','carAnnounceCount','blogs'));
     }
 
     public function create()
     {
-        return view('Admin.create');
-    }
+        $blogs = Blog::all();
 
+        return view('admin.blogs.blog', compact('blogs'));
+    }
 
     public function Show(Brand $admin)
     {
@@ -56,20 +59,7 @@ class AdminController extends Controller
         $admin->roles()->sync([$request->role_id]);
         return redirect()->route('Admin.index');
     }
-    public function editblog(Blog $blog)
-    {
-        return view('admin.blog.update', compact('blog'));
-    }
 
-    public function acceptblog(Request $request, User $admin)
-    {
-        $admin->update();
-        return redirect()->route('Admin.index');
-    }
 
-    public function accepteAnnouncement()
-    {
-        return view('admin.announcement');
-    }
 
 }

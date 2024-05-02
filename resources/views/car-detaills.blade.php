@@ -4,6 +4,43 @@
 <head>
 
     @extends('includes.head')
+    <style>
+        .room-thumbnail-slides {
+            position: relative;
+            z-index: 1;
+        }
+        .room-thumbnail-slides .carousel-indicators {
+            position: relative;
+            margin-bottom: 0;
+        }
+
+        .room-thumbnail-slides .carousel-indicators li {
+            width: 140px;
+            height: 70px;
+        }
+
+        .room-thumbnail-slides .carousel-inner .carousel-item {
+            height: 450px;
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            .room-thumbnail-slides .carousel-indicators li {
+                width: 140px;
+                height: 60px;
+            }
+        }
+        @media only screen and (max-width: 767px) {
+            .room-thumbnail-slides .carousel-indicators li {
+                width: 140px;
+                height: 30px;
+            }
+
+            .room-thumbnail-slides .carousel-inner .carousel-item {
+                height: 188px;
+            }
+        }
+        </style>
+
 
 </head>
 
@@ -11,89 +48,28 @@
     <!-- Navigation -->
     <x-navbar />
 
-    {{--  <section class="flex flex-col justify-center justify-content-around pt-40">
-            <div class="flex flex-row justify-evenly ">
 
-                <div class="rounded-lg overflow-hidden">
-                        <img class="w-[70%] h-auto border rounded-lg shadow-lg" src="{{ $announcement->getFirstMediaUrl('images') }}" alt="Car Images">
-                </div>
-                 <div class="flex flex-wrap w-50 gap-2 overflow-x-auto justify-center  border mt-4">
-                        @foreach ($announcement->getMedia('images') as $image)
-                        <img class="w-44 h-40 object-cover rounded-lg shadow-lg" src="{{ $image->getUrl() }}"alt="Car Image">
-                        @endforeach
-                </div>
-
-            </div>
-
-            <div class="flex flex-col h-full justify-between">
-                <div>
-                    <h2 class="text-2xl font-semibold mb-2 text-gray-800">{{ $cars->model }}</h2>
-                    <div class="flex flex-col space-y-4">
-                        <div class="flex flex-wrap gap-8">
-                            <div>
-                                <span class="text-xl font-bold text-gray-700 dark:text-gray-700">Price:</span>
-                                <span
-                                    class="text-xl text-gray-600 dark:text-gray-700">${{ $cars->announcement->price }}</span>
-                            </div>
-                            <div>
-                                <span class="text-xl font-bold text-gray-700 dark:text-gray-700">Year:</span>
-                                <span class="text-xl text-gray-600 dark:text-gray-700">{{ $cars->year }}</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="text-xl font-bold text-gray-700 dark:text-gray-700">Availability:</span>
-                            <span class="text-xl text-gray-600 dark:text-gray-700 bg-green-300 rounded-lg p-1">
-                                {{ $cars->announcement->situation }}
-                            </span>
-                        </div>
-                        <div class="flex flex-wrap gap-8">
-                            <div>
-                                <span class="text-xl font-bold text-gray-700 dark:text-gray-700">Color:</span>
-                                <span class="text-xl text-gray-600 dark:text-gray-700">{{ $cars->color }}</span>
-                            </div>
-                            <div>
-                                <span class="text-xl font-bold text-gray-700 dark:text-gray-700">City:</span>
-                                <span
-                                    class="text-xl text-gray-600 dark:text-gray-700 rounded-lg p-1">{{ $cars->announcement->city }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <span class="text-xl font-bold text-gray-700 dark:text-gray-700">Contact Info:</span>
-                    @if ($cars->announcement->type == 'rentel')
-                        <button id="openModal" class="btn-reserve">Reserve Now <i
-                                class="fa-solid fa-car-side ml-3"></i></button>
-                    @else
-                        <button id="">
-                            <a href="" class="btn-call">Call The Owner <i
-                                    class="fa-solid fa-car-side ml-3"></i></a>
-                        </button>
-                    @endif
-                    <a href="" class="btn-message">Send Message <i class="fa-solid fa-car-side ml-3"></i></a>
-                </div>
-            </div>
-
-        </div>
-
-    </section>  --}}
     <section class="flex flex-col justify-center items-center pt-28 md:pt-40 bg-white">
         <div class="flex flex-col justify-evenly items-center px-4 md:px-0">
+            <div class="room-thumbnail-slides w-full flex justify-center mb-50">
+                <div id="room-thumbnail--slide" class="carousel slide mx-auto w-1/2" data-ride="carousel">
+                    <div class="carousel-inner ">
+                            <div>
+                                <img src="{{ $announcement->getFirstMediaUrl('images') }}" class="block object-cover w-[100%]"
+                                    alt="" />
+                            </div>
+                    </div>
 
-            <div
-                class="flex flex-col md:flex-row justify-center items-center md:justify-center bg-white rounded-lg shadow-2xl overflow-hidden md:overflow-visible m-4 md:max-w-6xl">
-                <div class="md:w-1/2">
-                    <img class="w-full h-auto border rounded-lg shadow-lg transition-transform transform hover:scale-110"
-                        src="{{ $announcement->getFirstMediaUrl('images') }}" alt="Car Images">
+                    <div class="carousel-indicators mt-4 flex w-full">
+                        @foreach ($announcement->getMedia('images') as $image)
+                            <span class="w-full h-[10%] mx-auto">
+                                <img src="{{ $image->getUrl() }}" class="block object-cover" alt="" />
+                            </span>
+                        @endforeach
+                    </div>
                 </div>
-                <div class="flex flex-wrap justify-center">
-                    @foreach ($announcement->getMedia('images') as $image)
-                        <img class="w-40 h-36 object-cover rounded-lg shadow-2xl transition-transform transform hover:scale-110 m-2"
-                            src="{{ $image->getUrl() }}" alt="Car Image">
-                    @endforeach
-                </div>
-
             </div>
+
             @session('success')
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                     <strong class="font-bold">Success!</strong>
@@ -108,8 +84,7 @@
                 </div>
             @endsession
 
-            <div
-                class="p-4 md:p-8 md:w-1/2 bg-gray-100 bg-white rounded-lg shadow-2xl overflow-hidden md:overflow-visible">
+            <div class="p-4 flex flex-col item-center md:p-8 md:w-1/2 bg-gray-100 bg-white rounded-lg shadow-2xl overflow-hidden md:overflow-visible">
                 <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800">{{ $announcement->car->model }}</h2>
                 <div class="flex flex-col space-y-4">
                     <div class="flex flex-wrap items-center gap-4 md:gap-8">
@@ -142,24 +117,24 @@
                 </div>
                 <div class="mt-4">
                     @auth
-                    <span class="text-lg font-bold text-gray-700">Contact Info:</span>
-                    @if ($announcement->type == 'rentel')
-                        <button id="openModal"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center mt-2 md:mt-4">
-                            Reserve Now <i class="fa-solid fa-car-side ml-2"></i>
-                        </button>
-                    @else
-                        <button id="" class="mt-2 md:mt-4">
-                            <a href=""
-                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                                Call The Owner <i class="fa-solid fa-car-side ml-2"></i>
-                            </a>
-                        </button>
-                    @endif
-                    <a href=""
-                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-2 md:mt-4">
-                        Send Message <i class="fa-solid fa-car-side ml-2"></i>
-                    </a>
+                        <span class="text-lg font-bold text-gray-700">Contact Info:</span>
+                        @if ($announcement->type == 'rentel')
+                            <button id="openModal"
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center mt-2 md:mt-4">
+                                Reserve Now <i class="fa-solid fa-car-side ml-2"></i>
+                            </button>
+                        @else
+                            <button id="" class="mt-2 md:mt-4">
+                                <a href=""
+                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                                    Call The Owner <i class="fa-solid fa-car-side ml-2"></i>
+                                </a>
+                            </button>
+                        @endif
+                        <a href=""
+                            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-2 md:mt-4">
+                            Send Message <i class="fa-solid fa-car-side ml-2"></i>
+                        </a>
                     @endauth
                 </div>
             </div>

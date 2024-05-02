@@ -16,14 +16,17 @@ class ClientReservationController extends Controller
 
         return view('Client.clientReservations', compact('reservations'));
     }
-public function show()
-{
 
-}
+    public function show()
+    {
+
+    }
+
     public function create()
     {
         $user = auth()->user();
         $reservations = $user->reservations->load('announcement');
+
         return view('Client.clientReservations', compact('reservations'));
     }
 
@@ -32,6 +35,6 @@ public function show()
         $reservation = Reservation::findOrFail($id);
         $reservation->delete();
 
-        return view('Client.clientReservations');
+        return redirect()->back();
     }
 }

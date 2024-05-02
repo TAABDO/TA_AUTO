@@ -6,7 +6,7 @@
     <title> Cars </title>
 </head>
 
-<body id="carList">
+<body>
     {{--  ========================================================================================= header ===========================  --}}
     <x-navbar />
 
@@ -28,7 +28,8 @@
     {{--  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ Filter Section ========================  --}}
 
     <section class="w-full overflow-hidden mt-5">
-        <div class="absolute top-[50%] left-[5%] car spad bg-gray-800 p-10 flex flex-wrap justify-center z-10 rounded-[20px] shadow-2xl">
+        <div
+            class="absolute top-[50%] left-[5%] car spad bg-gray-800 p-10 flex flex-wrap justify-center z-10 rounded-[20px] shadow-2xl">
             <div class="container mx-auto flex flex-col justify-center">
                 <div class="text-center">
                     <div class="section-title">
@@ -36,44 +37,34 @@
                         <h2 class="text-3xl font-bold text-gray-200">Best Vehicle Offers</h2>
                     </div>
                 </div>
-                <form id="filterForm" action="{{ route('car.filterCar') }}" method="GET" class="w-full max-w-lg mx-auto mt-5">
-                    @method('GET')
+                <div class="select-list mb-4 flex flex-col gap-3">
+                    <div class="select-list-item">
+                        <p class="text-gray-500">Select Model Year</p>
+                        <select name="year" class="w-full border rounded p-2 mb-2" id="year">
+                            <option data-display="" value="">Select Model Year</option>
+                            <option class="text-gray-500" value="2024">2024</option>
+                            <option class="text-gray-500" value="2023">2023</option>
+                            <option class="text-gray-500" value="2022">2022</option>
+                            <option class="text-gray-500" value="2021">2021</option>
+                            <option class="text-gray-500" value="2020">2020</option>
+                            <option class="text-gray-500" value="2019">2019</option>
+                        </select>
+                    </div>
+                    <div class="select-list-item">
+                        <p class="text-gray-500">Select Transmission</p>
+                        <select name="transmission" class="w-full border rounded p-2 mb-2" id="transmission">
+                            <option data-display="" value="">Select Transmission</option>
+                            <option class="text-gray-500" value="manual">Manual</option>
+                            <option class="text-gray-500" value="automatic">Automatic</option>
+                        </select>
+                    </div>
+
                     <div class="select-list mb-4 flex flex-col gap-3">
-                        <div class="select-list-item">
-                            <p class="text-gray-500">Select Model Year</p>
-                            <select name="year" class="w-full border rounded p-2 mb-2">
-                                <option data-display="">Select Model Year</option>
-                                @foreach ($announcements as $announcement )
-                                <option class="text-gray-500" value="{{ $announcement->car->year }}">{{ $announcement->car->year }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="select-list-item">
-                            <p class="text-gray-500">Select Transmission</p>
-                            <select name="transmission" class="w-full border rounded p-2 mb-2">
-                                <option data-display="">Select Transmission</option>
-                                @foreach ($announcements as $announcement)
-                                    <option class="text-gray-500" value="{{ $announcement->car->transmission }}">
-                                        {{ $announcement->car->transmission }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="select-list-item">
-                            <p class="text-gray-500">Select Model</p>
-                            <select name="model" class="w-full border rounded p-2 mb-2">
-                                <option data-display="">Select Model</option>
-                                @foreach ($announcements as $announcement)
-                                    <option class="text-gray-500" value="{{ $announcement->car->model }}">
-                                        {{ $announcement->car->model }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <!-- Other select fields -->
                         <div class="select-list-item">
                             <p class="text-gray-500">Select Color</p>
-                            <select name="transmission" class="w-full border rounded p-2 mb-2">
-                                <option data-display="">Select Color</option>
+                            <select name="color" class="w-full border rounded p-2 mb-2" id="color">
+                                <option data-display="" value="">Select Color</option>
                                 @foreach ($announcements as $announcement)
                                     <option class="text-gray-500" value="{{ $announcement->car->color }}">
                                         {{ $announcement->car->color }}
@@ -83,104 +74,59 @@
                         </div>
                         <div class="select-list-item">
                             <p class="text-gray-500">Select Fuel_Type</p>
-                            <select name="model" class="w-full border rounded p-2 mb-2">
-                                <option data-display="">Select Fuel_Type</option>
-                                @foreach ($announcements as $announcement)
-                                    <option class="text-gray-500" value="{{ $announcement->car->fuel_type }}">
-                                        {{ $announcement->car->fuel_type }}
-                                    </option>
-                                @endforeach
+                            <select name="fuel_type" class="w-full border rounded p-2 mb-2" id="fuel_type">
+                                <option data-display="" value="">Select Fuel_Type</option>
+                                <option class="text-gray-500" value="diesel">Diesel</option>
+                                <option class="text-gray-500" value="Petrol">Petrol</option>
+                                <option class="text-gray-500" value="electric">electric</option>
                             </select>
                         </div>
-                        <div class="select-list-item">
-                            <p class="text-gray-500">Price</p>
-
-                                <div class="mb-4">
-                                    <input type="range" id="price-range" class="w-full accent-indigo-600" min="0" max="1000" value="500" oninput="updatePrice(this.value)">
-                                  </div>
-                                  <div class="flex justify-between text-gray-500">
-                                    <span id="minPrice">$0</span>
-                                    <span id="minPrice">$500</span>
-                                    <span id="maxPrice">$1000</span>
-                                  </div>
-                        </div>
-                        <div class="select-list-item">
-                            <button type="submit"
-                                class="py-2.5 px-5 mt-6 text-sm font-medium text-gray-900 focus:outline-none
+                    </div>
+                    <div class="select-list-item">
+                        <p class="text-gray-500">Select Model</p>
+                        <select name="model" class="w-full border rounded p-2 mb-2" id="model">
+                            <option data-display="" value="">Select Model</option>
+                            @foreach ($announcements as $announcement)
+                                <option class="text-gray-500" value="{{ $announcement->car->model }}">
+                                    {{ $announcement->car->model }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="select-list-item">
+                        <button type="submit" onclick="filter()"
+                            class="py-2.5 px-5 mt-6 text-sm font-medium text-gray-900 focus:outline-none
                                            bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4
                                            focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800
                                            dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                Searching
-                            </button>
-                        </div>
+                            Filter
+                        </button>
                     </div>
-                    <!-- Other form elements -->
-                </form>
+                </div>
+                <script></script>
+                <!-- Other form elements -->
             </div>
         </div>
     </section>
 
+    <div id="filterCar">
+
+    </div>
+
     {{--  ===================================== cards =============  --}}
     <div class="flex flex-col">
         <div class="flex flex-col md:flex-row gap-3 pl-[8rem] pt-[5rem]">
-            <form action="{{ route('type.filterByType') }}" method="GET" class="flex flex-col md:flex-row gap-3 pl-[20rem]">
-                @method('GET')
-                <select  id="filterType" name="type" class="w-full h-10 border-2 border-gray-800 focus:outline-none focus:border-gray-800 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
-                    <option value="All" selected="">All</option>
+            <div class="flex flex-col md:flex-row gap-3 pl-[20rem]">
+                <select id="filterType" name="type" onchange="filter()"
+                    class="w-full h-10 border-2 border-gray-800 focus:outline-none focus:border-gray-800 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
+                    <option value="" selected="">All</option>
                     <option value="rentel">Rentel</option>
                     <option value="sale">Sale</option>
                 </select>
-            </form>
+            </div>
         </div>
-        <div class="flex flex-wrap justify-end sm:justify-center gap-10 pl-[20rem] pt-[3rem] pb-[5rem] ">
-            @foreach ($announcements as $announcement)
-                <div class="w-full sm:w-auto md:w-auto lg:w-auto">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-lg">
-                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
-                            <div class="relative">
-                                <div class="car__item__pic__slider owl-carousel">
-                                    <img src="{{ $announcement->getFirstMediaUrl('images') }}" class="w-full h-44" alt="Car 1">
-                                </div>
-                                <span id="car-option" style="background-color: rgb(128, 202, 158)" class="car-option absolute top-0 right-0 text-white py-1 px-2 rounded-bl-lg">
-                                    For {{ $announcement->type }}
-                                </span>
-                            </div>
-                            <div class="p-4">
-                                <div class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">
-                                    <span>
-                                        {{ $announcement->car->year }}
-                                    </span>
-                                </div>
-                                <h5 class="text-xl font-semibold mt-2"><a href="#"
-                                        class="text-gray-800 hover:text-red-500"> {{ $announcement->car->model }}
-                                    </a></h5>
-                                <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
-                                    <li><span>{{ $announcement->car->km }}</span> mi | </li>
-                                    <li>{{ $announcement->car->transmission }} | </li>
-                                    <li><span>{{ $announcement->car->engine_capacity }}</span> hp |</li>
-                                </ul>
-                            </div>
-                            <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
-                                <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">
-                                    {{ $announcement->situation }}
-                                </h6>
-                                @if($announcement->type === 'rentel')
-                                    <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span class="text-sm">/Day</span>
-                                    </h6>
-                                @else
-                                    <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span class="text-sm"></span>
-                                    </h6>
-                                @endif
+        <div class="flex flex-wrap justify-end sm:justify-center gap-10 pl-[20rem] pt-[3rem] pb-[5rem] " id="carList">
 
-                            </div>
-                            <div class="p-4">
-                                <a href="{{ route('car.details', $announcement->id) }}"
-                                    class="text-white bg-blue-700 w-10 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
         </div>
     </div>
     {{--  <div>
@@ -192,63 +138,58 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#filterForm').submit(function(event) {
-                // Prevent default form submission
-                event.preventDefault();
+        function filter() {
+            var year = document.getElementById('year').value;
+            var transmission = document.getElementById('transmission').value;
+            var color = document.getElementById('color').value;
+            var fuel_type = document.getElementById('fuel_type').value;
+            var model = document.getElementById('model').value;
+            var type = document.getElementById('filterType').value;
 
-                // Serialize form data
-                var formData = $(this).serialize();
-
-                // Make AJAX request
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: 'GET',
-                    data: formData,
-                    success: function(response) {
-                        // Update the car list section with the filtered results
-                        $('#carList').html(response);
-                    },
-                });
+            // Make AJAX request
+            $.ajax({
+                url: 'filtercar',
+                type: 'POST',
+                data: {
+                    year: year,
+                    transmission: transmission,
+                    color: color,
+                    fuel_type: fuel_type,
+                    model: model,
+                    type: type
+                },
+                  headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Add your CSRF token here
+                },
+                success: function(response) {
+                    // Update the car list section with the filtered results
+                    $('#carList').html(response);
+                },
             });
+        }
+
+        $(document).ready(function() {
+            filter()
         });
     </script>
 
+
+
+    {{--  =================== color for rentel and for sale =====================  --}}
     <script>
-        $(document).ready(function() {
-            $('#filterType').change(function() {
-                var filterType = $(this).val();
+        if (document.getElementById('car-option').innerText === 'For sale') {
+            document.querySelector('.car-option').style.background == 'red';
 
-                $.ajax({
-                    url: '/filterByType',
-                    method: 'GET',
-                    data: {
-                        type: filterType
-                    },
-                    success: function(data) {
-                        $('#carList').html(data);
-                    },
-
-                });
-            });
-        });
+        } else {
+            document.querySelector('.car-option').style.background == 'rgb(92, 249, 155)';
+        }
     </script>
-
-{{--  =================== color for rentel and for sale =====================  --}}
-    <script>
-           if(document.getElementById('car-option').innerText === 'For sale'){
-            document.querySelector('.car-option').style.background = 'red';
-
-           }else{
-            document.querySelector('.car-option').style.background = 'rgb(92, 249, 155)';
-           }
-    </script>
-{{--  =================== price ====  --}}
+    {{--  =================== price ====  --}}
     <script>
         function updatePrice(value) {
-          document.getElementById("minPrice").textContent = "$" + value;
+            document.getElementById("minPrice").textContent = "$" + value;
         }
-      </script>
+    </script>
 </body>
 
 </html>

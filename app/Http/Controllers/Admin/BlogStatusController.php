@@ -9,21 +9,33 @@ use App\Http\Controllers\Controller;
 class BlogStatusController extends Controller
 {
 
-    
+
+    public function index()
+    {
+        $blogs = Blog::All();
+        return view('admin.blogs.blog', compact('blogs'));
+    }
+
     public function edit(Request $request,$id)
     {
 
-        $blogs = Blog::where('blogStatus', 'pending')->get();
-        $statuses = ['rejected','accepted','pending'];
+        // $blogs = Blog::where('blogStatus', 'pending')->get();
+        // $statuses = ['rejected','accepted','pending'];
         $blog = Blog::findOrFail($id);
+        // $statuses = ['rejected','accepted','pending'];
 
-        return view('admin.blogs.acceptblog', compact('blogs', 'statuses', 'blog'));
+        return view('admin.blogs.acceptblog', compact('blog'));
 
     }
-    public function update(Request $request, $id)
+    public function blogStatus(Request $request,Blog $blog)
     {
-        $blog = Blog::findOrFail($id);
-        $blog->update($request->all());
-        return redirect()->route('admin.blogs.acceptblog');
+        $data = $request->validate([
+            'blogStatus' => 'required|in:rejected,accepted,pending',
+        ]);
+        $blog->update($data);
+        // dd($blog->all());
+
+
+        return view('admin.blogs.acceptblog',compact('blog'));
     }
 }

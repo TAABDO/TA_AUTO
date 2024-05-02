@@ -26,58 +26,72 @@
 
 <section class="car spad bg-gray-100 pt-[10em] flex flex-col justify-center">
 
-    <div id="best" style="visibility: hidden"  class="text-center">
+    <div id="best" style="visibility: hidden" class="text-center">
         <div class="section-title">
             <span class="text-red-500 font-semibold">Best Vehicle Offers</span>
             <h2 class="text-3xl font-bold text-gray-800">Best Vehicle Offers</h2>
         </div>
     </div>
 
-    <div  id="announce" style="visibility: hidden" class="flex flex-wrap justify-center sm:justify-center md:justify-center lg:justify-center gap-10 pt-10 p-10">
+    <div id="announce" style="visibility: hidden"
+        class="flex flex-wrap justify-center sm:justify-center md:justify-center lg:justify-center gap-10 pt-10 p-10">
         @foreach ($announcements as $announcement)
             <div class="w-full sm:w-auto md:w-auto lg:w-auto">
-                <div
-                class="bg-white rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
-                    <div class="relative">
-                        <div class="car__item__pic__slider owl-carousel">
-                            {{--  <img src="img/cars/car-1.jpg" class="w-full" alt="Car 1">  --}}
-                            <img src="{{ $announcement->getFirstMediaUrl('images') }}" class="w-full h-44"
-                                alt="Car 1">
-                        </div>
-                        <span
-                            class="car-option sale absolute top-0 right-0 bg-red-500 text-white py-1 px-2 rounded-bl-lg">
-                            For {{ $announcement->type }}
-                        </span>
-                    </div>
-                    <div class="p-4">
-                        <div class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">
-                            {{ $announcement->car->year }}
-                        </div>
-                        <h5 class="text-xl font-semibold mt-2"><a href="#"
-                                class="text-gray-800 hover:text-red-500"> {{ $announcement->car->model }}
-                            </a></h5>
-                        <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
-                            <li><span>{{ $announcement->car->km }}</span> mi | </li>
-                            <li>{{ $announcement->car->transmission }} | </li>
-                            <li><span>{{ $announcement->car->engine_capacity }}</span> hp |</li>
-                        </ul>
-                    </div>
-                    <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
-                        <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">
-                            {{ $announcement->situation }}
-                        </h6>
-                        @if($announcement->type === 'rentel')
-                            <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span class="text-sm">/Day</span>
-                            </h6>
-                        @else
-                            <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span class="text-sm"></span>
-                            </h6>
-                        @endif
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                        <div class="relative">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="{{ $announcement->getFirstMediaUrl('images') }}" class="w-full h-44"
+                                    alt="Car 1">
+                            </div>
+                            @if ($announcement->type === 'rentel')
+                                <span id="car-option" style="background-color: rgb(245, 23, 23)"
+                                    class="car-option absolute top-0 right-0 text-white py-1 px-2 rounded-bl-lg">
+                                    For {{ $announcement->type }}
+                                </span>
+                            @else
+                                <span id="car-option" style="background-color: rgb(44, 198, 100)"
+                                    class="car-option absolute top-0 right-0 text-white py-1 px-2 rounded-bl-lg">
+                                    For {{ $announcement->type }}
+                                </span>
+                            @endif
 
-                    </div>
-                    <div class="p-4">
-                        <a href="{{ route('car.details', $announcement->id) }}"
-                            class="text-white bg-blue-700 w-10 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Details</a>
+                        </div>
+                        <div class="p-4">
+                            <div class="label-date bg-gray-100 Text-gray-700 py-1 px-2 w-16 rounded-bl-lg shadow-lg">
+                                <span>
+                                    {{ $announcement->car->year }}
+                                </span>
+                            </div>
+                            <h5 class="text-xl font-semibold mt-2"><a href="#"
+                                    class="text-gray-800 hover:text-red-500">
+                                    {{ $announcement->car->model }}
+                                </a></h5>
+                            <ul class="text-gray-600 mt-2 flex flex-row justify-evenly">
+                                <li><span>{{ $announcement->car->km }}</span> mi | </li>
+                                <li>{{ $announcement->car->transmission }} | </li>
+                                <li><span>{{ $announcement->car->engine_capacity }}</span> hp |</li>
+                            </ul>
+                        </div>
+                        <div class="car__item__price mt-4 p-2 bg-gray-100 border-top flex flex-row gap-5">
+                            <h6 class="text-lg font-semibold bg-green-300 p-2 rounded-full shadow-lg">
+                                {{ $announcement->situation }}
+                            </h6>
+                            @if ($announcement->type === 'rentel')
+                                <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span
+                                        class="text-sm">/Day</span>
+                                </h6>
+                            @else
+                                <h6 class="text-lg font-semibold p-2">${{ $announcement->price }}<span
+                                        class="text-sm"></span>
+                                </h6>
+                            @endif
+
+                        </div>
+                        <div class="p-4">
+                            <a href="{{ route('car.details', $announcement->id) }}"
+                                class="text-white bg-blue-700 w-10 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Details</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -263,8 +277,7 @@
 </section>
 {{--  ======================================= cars ===========  --}}
 
-<section class="blog pt-5">
-
+ <section class="blog pt-5">
     <div class="text-center">
         <div class="section-title">
             <span class="text-red-500 font-semibold">Latest blogs</span>
@@ -297,9 +310,7 @@
             </div>
         @endforeach
     </div>
-
-
-</section>
+ </section>
 
 <section>
     <div class="items-center w-12/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-5"
@@ -331,8 +342,8 @@
 <!-- Footer -->
 
 <!-- Js Plugins -->
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
     $(document).ready(function() {
         $('#filterButton').click(function(e) {
             e.preventDefault();
@@ -352,10 +363,10 @@
             });
         });
     });
- </script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
- <script>
+<script>
     const wordds = ["Hello, World! Welcome to my website!", "Drive the Future with TA-AUTO: ",
         " Your Trusted Car Marketplace.", "TA-AUTO: Where Every Mile Tells a Story.", " Start Your Journey Today."
     ];
@@ -390,21 +401,19 @@
 </script>
 
 
- <script>
-    new Promise((resolve,reject)=>
-    {
+<script>
+    new Promise((resolve, reject) => {
 
-        setTimeout(function(){
+        setTimeout(function() {
             document.getElementById('best').style.visibility = "visible";
             resolve();
-        },1000)
+        }, 1000)
 
 
-    }).then(()=>
-    {
-        setTimeout(function(){
+    }).then(() => {
+        setTimeout(function() {
             document.getElementById('announce').style.visibility = "visible";
-        },1000)
+        }, 1000)
 
 
     })

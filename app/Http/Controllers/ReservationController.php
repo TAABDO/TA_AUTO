@@ -12,68 +12,8 @@ class ReservationController extends Controller
 {
     public function index()
     {
-        // Get the authenticated user
-        // $user = auth()->user();
 
-        // // Get the reservations that belong to the user and load the announcement.car relationship
-        // $reservations = $user->reservations()->with('announcement_id')->get();
-
-        return view('announcer.profile');
     }
-
-    // public function create()
-    // {
-    //     // Get the announcement ID from the request
-    //     $announcementId = $request->input('announcement_id');
-
-    //     // Retrieve the announcement from the database
-    //     $announcement = Announcement::find($announcementId);
-
-    //     // Redirect to the reservation details page
-    //     return view('car-detaills', compact('announcement'));
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'identification_card' => 'sometimes',
-    //         'licence' => 'sometimes',
-    //         'licenceDate' => 'sometimes|date',
-    //         'pickupDate' => 'sometimes|date',
-    //         'dropofDate' => 'sometimes|date',
-    //         'pickupLocation' => 'required',
-    //         'dropofLocation' => 'required',
-    //         'announcement_id' => 'required',
-    //     ]);
-
-    //     $user_id = auth()->id();
-
-    //     if ($user_id === null) {
-    //         return redirect('login');
-    //     }
-
-    //     // if ($user_id->reservations()->where('announcement_id', $validated['announcement_id'])->exists()) {
-    //     //     return view('announcer.profile.myreservation')->with('error', 'You have already made a reservation for this car');
-    //     // }
-
-    //     // Create a new reservation for the authenticated user
-    //      $reservations = $user->reservations()->create($validated);
-
-    //     $reservations = DB::table('reservations')
-    //         ->select('reservations.*', 'announcements.*', 'cars.*')
-    //         ->leftJoin('announcements', 'reservations.announcement_id', '=', 'announcements.id')
-    //         ->leftJoin('cars', 'announcements.id', '=', 'cars.announcement_id')
-    //         ->where('reservations.user_id', $user_id)
-    //         ->get();
-
-    //     if (!$reservations) {
-    //         return view('car-detaills')->with('error', 'Reservation not created');
-    //     }
-
-    //     return view('reservation', compact('reservations', 'user_id'));
-    // }
-
-
 
 public function store(Request $request)
 {
@@ -91,7 +31,7 @@ public function store(Request $request)
 
     $announcement = Announcement::where('situation','available')->get();
 
-    if ($announcement) {
+    if (!$announcement) {
         return redirect()->back()->with('error', 'The specified announcement does not exist');
     }
 
@@ -116,4 +56,7 @@ public function store(Request $request)
 }
 
 }
+
+
+
 
